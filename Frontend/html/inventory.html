@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="text-white bg-slate-200 relative">
+    <nav class="w-full flex py-5 justify-between items-baseline bg-cyan-500 fixed top-0 left-0 z-10 md:py-2">
+        <div class="px-5">Buisness</div>
+        <div id="nav-menu"
+            class="w-2/4 sm:w-2/5 hidden flex-col items-start space-y-2 bg-cyan-400 md:bg-transparent absolute top-0 right-0 p-5 md:static md:w-3/4 md:space-y-0 md:flex md:flex-row md:items-center md:justify-between">
+            <li class="list-none relative block md:hidden">
+                <i id="close-icon" class="fa-solid fa-times text-white text-xl cursor-pointer"></i>
+            </li>
+            <li class="list-none relative">
+                <a href="index.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Home
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="store.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    <i class="fa-solid fa-shop"></i>
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="inventory.html"
+                    class="text-slate-800 after:absolute after:w-[50%] after:h-[2px] after:top-[22px] after:left-0 after:bg-slate-800 after:content-['']">
+                    Inventory
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="bills.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Bills
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="revenue.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Revenue
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="about.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    About
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="contact.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Contact
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a
+                    class="text-white cursor-pointer hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    <i id="mode" class="fa-solid fa-lightbulb"></i>
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="register.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Register
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="login.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Login
+                </a>
+            </li>
+        </div>
+        <div id="hamburger" class="block md:hidden px-5">
+            <i class="text-xl fa-solid fa-bars"></i>
+        </div>
+    </nav>
+    <section id="inventory-details" class="max-w-screen-2xl mt-28 mx-5 sm:mx-10 mb-10 px-4">
+        <div id="inventory" class="w-full flex flex-col items-center">
+            <div class="w-full flex flex-col gap-5 sm:flex-row items-center sm:justify-around sm:items-baseline">
+                <div>
+                    <label for="category-options"
+                        class="text-lg font-semibold text-white mr-2 change-text">Category:</label>
+                    <select id="category-options"
+                        class="w-[115px] cursor-pointer border border-gray-300 rounded-lg shadow-sm px-1 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                    </select>
+                    <i id="edit-category"
+                        class="fa-regular fa-pen-to-square change-text mx-2 text-lg cursor-pointer"></i>
+                </div>
+                <div>
+                    <label for="stock-options" class="text-lg font-semibold text-white mr-2 change-text">Show :</label>
+                    <select id="stock-options"
+                        class="w-[120px] border cursor-pointer border-gray-300 rounded-lg shadow-sm px-1 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                        <option value="all">All Stock</option>
+                        <option value="low">Low Stock</option>
+                        <option value="old">Old Stock</option>
+                        <option value="new">New Stock</option>
+                    </select>
+                </div>
+            </div>
+            <div class="w-full flex flex-col gap-5 mt-5 sm:flex-row items-center sm:justify-around sm:items-baseline">
+                <button id="add-category"
+                    class="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded cursor-pointer">Add
+                    Category</button>
+                <button id="add-product"
+                    class="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded cursor-pointer">Add
+                    Product</button>
+            </div>
+        </div>
+        <div id="category-form" class="w-full hidden justify-center my-10 flex-col items-center">
+            <form class="p-4 w-72 sm:w-96 space-y-6 border border-black rounded-md">
+                <h2 class="text-2xl font-bold text-center change-text">Add Category</h2>
+                <div>
+                    <label for="category-name" class="font-medium block mb-1 change-text">Category Name <span
+                            class="text-red-500">*</span></label>
+                    <input type="text" id="category-name" name="category-name"
+                        class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                        required>
+                </div>
+                <div>
+                    <label id="category-gst" class="flex flex-col gap-2 change-text">
+                        <span>GST (%)</span>
+                        <input type="text" id="category-gst" name="category-gst" placeholder="Enter value"
+                            class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                    </label>
+                </div>
+                <div>
+                    <label for="category-unit" class="font-medium block mb-1 change-text">Quantity Unit</label>
+                    <select id="category-unit" name="category-unit"
+                        class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                        <option value="kg">Kg</option>
+                        <option value="g">Grams</option>
+                        <option value="l">Liters</option>
+                        <option value="ml">Milliliters</option>
+                        <option value="pc">Pieces</option>
+                        <option value="pk">Packets</option>
+                        <option value="dz">Dozen</option>
+                        <option value="box">Box</option>
+                        <option value="carton">Carton</option>
+                        <option value="bundle">Bundle</option>
+                        <option value="roll">Roll</option>
+                    </select>
+                </div>
+                <div class="flex flex-col justify-evenly items-center gap-5 sm:flex-row">
+                    <button type="submit"
+                        class="w-28 bg-green-500 text-white font-medium py-2 px-4 rounded-md hover:bg-green-600">Submit</button>
+                    <button type="button" id="cancel-category-form"
+                        class="w-28 bg-cyan-500 text-white font-medium py-2 px-4 rounded-md hover:bg-cyan-600">Cancel</button>
+                </div>
+            </form>
+        </div>
+        <div id="edit-category-form" class="w-full hidden justify-center my-10 flex-col items-center">
+            <form class="p-4 w-72 sm:w-96 space-y-6 border border-black rounded-md">
+                <h2 class="text-2xl font-bold text-center change-text">Edit Category</h2>
+                <div class="flex justify-between items-start">
+                    <div class="w-[95%]">
+                        <label id="edit-category-name" class="flex flex-col gap-2 change-text">
+                            <span>Category :</span>
+                            <div class="flex items-center space-x-2">
+                                <select name="edit-category-name" disabled
+                                    class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                                </select>
+                                <input type="text" name="new-category-name" placeholder="Change Name" readonly
+                                    class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                            </div>
+                        </label>
+                    </div>
+                    <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div class="w-[95%]">
+                        <label id="edit-category-gst" class="flex flex-col gap-2 change-text">
+                            <span>GST (%)</span>
+                            <input type="text" id="edit-category-gst" name="edit-category-gst" placeholder="Enter value" readonly
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                        </label>
+                    </div>
+                    <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div class="w-[95%]">
+                        <label for="edit-category-unit" class="font-medium block mb-1 change-text">Quantity Unit</label>
+                        <select id="edit-category-unit" name="edit-category-unit"
+                            class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                            disabled>
+                            <option value="kg">Kg</option>
+                            <option value="g">Grams</option>
+                            <option value="l">Liters</option>
+                            <option value="ml">Milliliters</option>
+                            <option value="pc">Pieces</option>
+                            <option value="pk">Packets</option>
+                            <option value="dz">Dozen</option>
+                            <option value="box">Box</option>
+                            <option value="carton">Carton</option>
+                            <option value="bundle">Bundle</option>
+                            <option value="roll">Roll</option>
+                        </select>
+                    </div>
+                    <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                </div>
+                <div class="flex flex-col justify-evenly items-center gap-5">
+                    <button type="submit"
+                        class="w-full bg-green-500 text-white font-medium py-2 px-4 rounded-md hover:bg-green-600">Submit</button>
+                    <button type="submit"
+                        class="w-full bg-red-500 text-white font-medium py-2 px-4 rounded-md hover:bg-red-600">Remove</button>
+                    <button type="button" id="cancel-edit-category"
+                        class="w-full bg-cyan-500 text-white font-medium py-2 px-4 rounded-md hover:bg-cyan-600">Cancel</button>
+                </div>
+            </form>
+        </div>
+        <div id="product-form" class="w-full hidden justify-center flex-col items-center">
+            <form class="p-4 w-full flex border border-black rounded-md flex-wrap flex-col gap-5">
+                <div>
+                    <h2 class="text-2xl font-bold text-center change-text">Add Product</h2>
+                </div>
+                <div class="flex justify-between flex-col sm:flex-row items-end gap-5">
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="product-name" class="font-medium block mb-1 change-text">Product Name <span
+                                    class="text-red-500">*</span></label>
+                            <input type="text" id="product-name" name="product-name"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                                required>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="product-image" class="font-medium block mb-1 change-text">Product Image</label>
+                            <input type="file" id="product-image" name="product-image" accept="image/*"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="product-code" class="font-medium block mb-1 change-text">Product Code</label>
+                            <input type="text" id="product-code" name="product-code"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-between flex-col sm:flex-row items-end gap-5">
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%] flex flex-col">
+                            <label for="product-category"
+                                class="text-lg font-semibold text-white mr-2 change-text">Category:</label>
+                            <select id="product-category"
+                                class="w-full cursor-pointer border border-gray-300 rounded-lg shadow-sm px-1 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="quantity" class="font-medium block mb-1 change-text">Quantity <span
+                                    class="text-red-500">*</span></label>
+                            <input type="number" id="quantity" name="quantity"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                                required>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="quantity-unit" class="font-medium block mb-1 change-text">Quantity Unit <span
+                                    class="text-red-500">*</span></label>
+                            <select id="quantity-unit" name="quantity-unit"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                                required>
+                                <option value="kg">Kg</option>
+                                <option value="g">Grams</option>
+                                <option value="l">Liters</option>
+                                <option value="ml">Milliliters</option>
+                                <option value="pc">Pieces</option>
+                                <option value="dz">Dozen</option>
+                                <option value="packet">Packets</option>
+                                <option value="tray">Tray</option>
+                                <option value="box">Box</option>
+                                <option value="carton">Carton</option>
+                                <option value="bundle">Bundle</option>
+                                <option value="roll">Roll</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div id="convert-piece" class="hidden flex-col justify-start sm:flex-row items-center mt-2 gap-5">
+                    <label for="totalPieces" class="font-medium text-xl change-text"></label>
+                    <input type="number" id="totalPieces" name="totalPieces"
+                        class="border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                        placeholder="Enter number" required>
+                </div>
+                <div class="flex justify-between flex-col sm:flex-row items-end gap-5">
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="retail-price" class="font-medium block mb-1 change-text">Purchased Price <span
+                                    class="text-red-500">*</span></label>
+                            <input type="number" id="retail-price" name="retail-price"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                                required>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="selling-price" class="font-medium block mb-1 change-text">Selling Price <span
+                                    class="text-red-500">*</span></label>
+                            <input type="number" id="selling-price" name="selling-price"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                                required>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="selling-unit" class="font-medium block mb-1 change-text">Selling Unit <span
+                                    class="text-red-500">*</span></label>
+                            <select id="selling-unit" name="selling-unit"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                                required>
+                                <option value="kg">Kg</option>
+                                <option value="g">Grams</option>
+                                <option value="l">Liters</option>
+                                <option value="ml">Milliliters</option>
+                                <option value="pc">Pieces</option>
+                                <option value="pk">Packets</option>
+                                <option value="dz">Dozen</option>
+                                <option value="box">Box</option>
+                                <option value="carton">Carton</option>
+                                <option value="bundle">Bundle</option>
+                                <option value="roll">Roll</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div id="value-selection" class="hidden flex-col justify-start sm:flex-row items-center mt-2 gap-5">
+                    <p class="font-medium text-xl change-text">
+                        Enter one of the values
+                    </p>
+                    <select id="valueType" name="valueType"
+                        class="border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                        <option value="totalPiece">Total Piece</option>
+                        <option value="perPieceWeight">Per Piece Weight</option>
+                    </select>
+                    <input type="number" id="inputValue" name="inputValue"
+                        class="border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                        placeholder="Enter value" required>
+                </div>
+                <div class="flex justify-between flex-col sm:flex-row items-end gap-5">
+                    <div class="flex justify-between items-start w-full sm:w-[48%]">
+                        <div class="w-[95%]">
+                            <label for="description" class="font-medium block mb-1 change-text">Description</label>
+                            <input type="text" id="description" name="description"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start w-full sm:w-[48%]">
+                        <div class="w-[95%]">
+                            <label for="location" class="font-medium block mb-1 change-text">Location</label>
+                            <input type="text" id="location" name="location"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-between flex-col sm:flex-row items-end gap-5">
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="location-image" class="font-medium block mb-1 change-text">Location
+                                Image</label>
+                            <input type="file" id="location-image" name="location-image" accept="image/*"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="low-stock-alert" class="font-medium block mb-1 change-text">Low Stock Alert
+                                (Days)</label>
+                            <input type="number" id="low-stock-alert" name="low-stock-alert"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="aging-stock-alert" class="font-medium block mb-1 change-text">Aging Stock Alert
+                                (Days)</label>
+                            <input type="number" id="aging-stock-alert" name="aging-stock-alert"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-around flex-wrap items-end gap-5">
+                    <div class="flex justify-between items-start">
+                        <div class="w-[95%]">
+                            <label id="product-gst" class="flex flex-col gap-2 change-text">
+                                <span>GST (%)</span>
+                                <input type="text" id="product-gst" name="product-gst" placeholder="Enter value"
+                                    class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div class="w-[95%]">
+                            <label class="flex flex-col gap-2 change-text">
+                                <span>Packaging Charges</span>
+                                <div class="flex items-center space-x-2">
+                                    <select name="packaging_type"
+                                        class="block w-[70px] border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                                        <option value="price">₹</option>
+                                        <option value="percent">%</option>
+                                    </select>
+                                    <input type="text" name="packaging_value" placeholder="Enter value"
+                                        class="block w-[120px] border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div class="w-[95%]">
+                            <label class="flex flex-col gap-2 change-text">
+                                <span>Handling Charges</span>
+                                <div class="flex items-center space-x-2">
+                                    <select name="handling_type"
+                                        class="block w-[70px] border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                                        <option value="price">₹</option>
+                                        <option value="percent">%</option>
+                                    </select>
+                                    <input type="text" name="handling_value" placeholder="Enter value"
+                                        class="block w-[120px] border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col my-4 sm:flex-row sm:justify-around gap-5">
+                    <div class="w-full sm:w-[30%]">
+                        <button type="submit"
+                            class="w-full bg-green-500 text-white font-medium py-2 px-4 rounded-md hover:bg-green-600">Submit</button>
+                    </div>
+                    <div class="w-full sm:w-[30%]">
+                        <button type="button" id="cancel-product-form"
+                            class="w-full bg-cyan-500 text-white font-medium py-2 px-4 rounded-md hover:bg-cyan-600">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="edit-product-form" class="w-full hidden justify-center flex-col items-center">
+            <form class="p-4 w-full flex border border-black rounded-md flex-wrap flex-col gap-5">
+                <div>
+                    <h2 class="text-2xl font-bold text-center change-text">Edit Product</h2>
+                </div>
+                <div class="flex justify-between flex-col sm:flex-row items-end gap-5">
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="edit-product-name" class="font-medium block mb-1 change-text">Product
+                                Name</label>
+                            <input type="text" id="edit-product-name" name="edit-product-name"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                                readonly>
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="edit-product-image" class="font-medium block mb-1 change-text">Product
+                                Image</label>
+                            <input type="file" id="edit-product-image" name="edit-product-image" accept="image/*"
+                                class="block w-full border border-gray-300 rounded-md py-[6px] px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                                readonly>
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="edit-product-code" class="font-medium block mb-1 change-text">Product
+                                Code</label>
+                            <input type="text" id="edit-product-code" name="edit-product-code"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                                readonly>
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                </div>
+                <div class="flex justify-between flex-col sm:flex-row items-end gap-5">
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%] flex flex-col">
+                            <label for="edit-product-category"
+                                class="text-lg font-semibold text-white mr-2 change-text">Category:</label>
+                            <select id="edit-product-category" disabled
+                                class="w-full cursor-pointer border border-gray-300 rounded-lg shadow-sm px-1 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                            </select>
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="edit-quantity" class="font-medium block mb-1 change-text">Quantity</label>
+                            <input type="number" id="edit-quantity" name="edit-quantity"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                                readonly>
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="edit-quantity-unit" class="font-medium block mb-1 change-text">Quantity
+                                Unit</label>
+                            <select id="edit-quantity-unit" name="edit-quantity-unit"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                                disabled>
+                                <option value="kg">Kg</option>
+                                <option value="g">Grams</option>
+                                <option value="l">Liters</option>
+                                <option value="ml">Milliliters</option>
+                                <option value="pc">Pieces</option>
+                                <option value="pk">Packets</option>
+                                <option value="dz">Dozen</option>
+                                <option value="box">Box</option>
+                                <option value="carton">Carton</option>
+                                <option value="bundle">Bundle</option>
+                                <option value="roll">Roll</option>
+                            </select>
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                </div>
+                <div id="edit-convert-piece" class="flex flex-col justify-start sm:flex-row items-center mt-2 gap-5">
+                    <label for="editTotalPieces" class="font-medium text-xl change-text"></label>
+                    <div class="flex items-center space-x-2">
+                        <input type="number" id="editTotalPieces" name="editTotalPieces"
+                            class="border w-[95%] border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                            placeholder="Enter number" readonly>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                </div>
+                <div class="flex justify-between flex-col sm:flex-row items-end gap-5">
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="edit-purchased-price" class="font-medium block mb-1 change-text">Purchased
+                                Price</label>
+                            <input type="number" id="edit-purchased-price" name="edit-purchased-price"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                                readonly>
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="edit-selling-price" class="font-medium block mb-1 change-text">Selling
+                                Price</label>
+                            <input type="number" id="edit-selling-price" name="edit-selling-price"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                                readonly>
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="edit-selling-unit" class="font-medium block mb-1 change-text">Selling
+                                Unit</label>
+                            <select id="edit-selling-unit" name="edit-quantity-unit"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                                disabled>
+                                <option value="kg">Kg</option>
+                                <option value="g">Grams</option>
+                                <option value="l">Liters</option>
+                                <option value="ml">Milliliters</option>
+                                <option value="pc">Pieces</option>
+                                <option value="pk">Packets</option>
+                                <option value="dz">Dozen</option>
+                                <option value="box">Box</option>
+                                <option value="carton">Carton</option>
+                                <option value="bundle">Bundle</option>
+                                <option value="roll">Roll</option>
+                            </select>
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                </div>
+                <div id="edit-value-selection" class="flex flex-col justify-start sm:flex-row items-center mt-2 gap-5">
+                    <p class="font-medium text-xl change-text">
+                        Enter one of the values
+                    </p>
+                    <select id="editValueType" name="editValueType" disabled
+                        class="border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                        <option value="totalPiece">Total Piece</option>
+                        <option value="perPieceWeight">Per Piece Weight</option>
+                    </select>
+                    <div class="flex items-center space-x-2">
+                        <input type="number" id="editInputValue" name="editInputValue"
+                            class="border w-[95%] border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                            placeholder="Enter value" readonly>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                </div>
+                <div class="flex justify-between flex-col sm:flex-row items-end gap-5">
+                    <div class="flex justify-between items-start w-full sm:w-[48%]">
+                        <div class="w-[95%]">
+                            <label for="edit-description" class="font-medium block mb-1 change-text">Description</label>
+                            <input type="text" id="edit-description" name="edit-description"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                                readonly>
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                    <div class="flex justify-between items-start w-full sm:w-[48%]">
+                        <div class="w-[95%]">
+                            <label for="edit-location" class="font-medium block mb-1 change-text">Location</label>
+                            <input type="text" id="edit-location" name="edit-location"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                                readonly>
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                </div>
+                <div class="flex justify-between flex-col sm:flex-row items-end gap-5">
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="edit-location-image" class="font-medium block mb-1 change-text">Location
+                                Image</label>
+                            <input type="file" id="edit-location-image" name="edit-location-image" accept="image/*"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                                readonly>
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="edit-low-stock-alert" class="font-medium block mb-1 change-text">Low Stock Alert
+                                (Days)</label>
+                            <input type="number" id="edit-low-stock-alert" name="edit-low-stock-alert"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                                readonly>
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                    <div class="flex justify-between items-start w-full sm:w-[30%]">
+                        <div class="w-[95%]">
+                            <label for="edit-aging-stock-alert" class="font-medium block mb-1 change-text">Aging Stock
+                                Alert
+                                (Days)</label>
+                            <input type="number" id="edit-aging-stock-alert" name="edit-aging-stock-alert"
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                                readonly>
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                </div>
+                <div class="flex justify-around flex-wrap items-end gap-5">
+                    <div class="flex justify-between items-start">
+                        <div class="w-[95%]">
+                            <label id="edit-product-gst" class="flex flex-col gap-2 change-text">
+                                <span>GST (%)</span>
+                                <input type="text" id="edit-product-gst" name="edit-product-gst" placeholder="Enter value" readonly
+                                    class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                            </label>
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div class="w-[95%]">
+                            <label class="flex flex-col gap-2 change-text">
+                                <span>Packing Charges</span>
+                                <div class="flex items-center space-x-2">
+                                    <select name="packaging_type" disabled
+                                        class="block w-[70px] border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                                        <option value="price">₹</option>
+                                        <option value="percent">%</option>
+                                    </select>
+                                    <input type="text" name="packaging_value" placeholder="Amount" readonly
+                                        class="block w-[120px] border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                                </div>
+                            </label>
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div class="w-[95%]">
+                            <label class="flex flex-col gap-2 change-text">
+                                <span>Handling Charges</span>
+                                <div class="flex items-center space-x-2">
+                                    <select name="handling_type" disabled
+                                        class="block w-[70px] border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                                        <option value="price">₹</option>
+                                        <option value="percent">%</option>
+                                    </select>
+                                    <input type="text" name="handling_value" placeholder="Amount" readonly
+                                        class="block w-[120px] border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                                </div>
+                            </label>
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                </div>
+                <div class="flex flex-col my-4 sm:flex-row sm:justify-between gap-5">
+                    <div class="w-full sm:w-[30%]">
+                        <button type="submit"
+                            class="w-full bg-green-500 text-white font-medium py-2 px-4 rounded-md hover:bg-green-600">Submit</button>
+                    </div>
+                    <div class="w-full sm:w-[30%]">
+                        <button type="submit"
+                            class="w-full bg-red-500 text-white font-medium py-2 px-4 rounded-md hover:bg-red-600">Remove</button>
+                    </div>
+                    <div class="w-full sm:w-[30%]">
+                        <button type="button" id="cancel-edit-product"
+                            class="w-full bg-cyan-500 text-white font-medium py-2 px-4 rounded-md hover:bg-cyan-600">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="display-stock" class="hidden">
+            <h2 id="stock-heading" class="text-3xl font-bold text-center my-6 change-text"></h2>
+            <div class="flex justify-end">
+                <div class="flex items-center bg-cyan-500 text-white rounded-md p-2 w-72 my-5 shadow-md">
+                    <input type="text" id="search-input" placeholder="Search..."
+                        class="flex-grow bg-cyan-500 text-white placeholder-white outline-none px-2 text-sm" />
+                    <button id="search-btn" class="ml-2">
+                        <i class="fa-solid fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table id="inventory-table" class="w-full table-auto border-collapse border border-gray-300">
+                    <thead class="bg-gray-800 text-white">
+                        <tr>
+                            <th class="px-4 py-2 border-b border-gray-300">Name</th>
+                            <th class="w-[122px] px-4 py-2 border-b border-gray-300">Image</th>
+                            <th class="px-4 py-2 border-b border-gray-300">Code</th>
+                            <th class="px-4 py-2 border-b border-gray-300">Stock</th>
+                            <th class="px-4 py-2 border-b border-gray-300">Category</th>
+                            <th class="px-4 py-2 border-b border-gray-300">Location</th>
+                            <th class="w-[122px] px-4 py-2 border-b border-gray-300">L-Image</th>
+                            <th class="px-4 py-2 border-b border-gray-300">P-Price</th>
+                            <th class="px-4 py-2 border-b border-gray-300">S-Price</th>
+                            <th class="px-4 py-2 border-b border-gray-300">Tax</th>
+                            <th class="px-4 py-2 border-b border-gray-300">Packaging</th>
+                            <th class="px-4 py-2 border-b border-gray-300">Handling</th>
+                            <th class="px-4 py-2 border-b border-gray-300">Date</th>
+                            <th class="px-4 py-2 border-b border-gray-300">Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stock-details" class="bg-white text-black text-center cursor-pointer">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <script src="../js/common.js"></script>
+    <script src="../js/inventory.js"></script>
+</body>
+
+</html>

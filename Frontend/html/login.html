@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="text-slate-200 bg-slate-200 relative">
+    <nav class="w-full flex py-5 justify-between items-baseline bg-cyan-500 fixed top-0 left-0 z-10 md:py-2">
+        <div class="px-5">Buisness</div>
+        <div id="nav-menu"
+            class="w-2/4 sm:w-2/5 hidden flex-col items-start space-y-2 bg-cyan-400 md:bg-transparent absolute top-0 right-0 p-5 md:static md:w-3/4 md:space-y-0 md:flex md:flex-row md:items-center md:justify-between">
+            <li class="list-none relative block md:hidden">
+                <i id="close-icon" class="fa-solid fa-times text-white text-xl cursor-pointer"></i>
+            </li>
+            <li class="list-none relative">
+                <a href="index.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Home
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="store.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    <i class="fa-solid fa-shop"></i>
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="inventory.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Inventory
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="bills.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Bills
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="revenue.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Revenue
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="about.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    About
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="contact.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Contact
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a 
+                    class="text-white cursor-pointer hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    <i id="mode" class="fa-solid fa-lightbulb"></i>
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="register.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Register
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="login.html"
+                    class="text-slate-800 after:absolute after:w-[50%] after:h-[2px] after:top-[22px] after:left-0 after:bg-slate-800 after:content-['']">
+                    Login
+                </a>
+            </li>
+        </div>
+        <div id="hamburger" class="block md:hidden px-5">
+            <i class="text-xl fa-solid fa-bars"></i>
+        </div>
+    </nav>
+    <section id="login-page-section" class="flex items-center justify-center min-h-screen text-slate-800">
+        <div class="w-full max-w-md p-8 space-y-6">
+            <form id="login-form" class="space-y-4">
+                <h2 class="text-2xl font-bold text-center change-text">Login</h2>
+                <div>
+                    <label for="email" class="block text-sm font-medium change-text">Email</label>
+                    <input type="email" id="email" name="email" required class="w-full px-4 py-2 mt-1 text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:outline-none change-input">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium change-text">Password</label>
+                    <input type="password" id="password" name="password" required class="w-full px-4 py-2 mt-1 text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:outline-none change-input">
+                </div>
+                <button type="submit" class="w-full py-2 text-white bg-cyan-500 rounded-lg hover:bg-cyan-600 focus:ring-2 focus:ring-cyan-500 focus:outline-none">
+                    Login
+                </button>
+                <p class="text-sm text-center change-text">
+                    Forgot your password?
+                    <a id="forgot-password" class="text-cyan-500 hover:underline">Click here</a>
+                </p>
+            </form>
+            
+            <form id="otp-form" class="hidden space-y-4 relative">
+                <h2 class="text-2xl font-bold text-center change-text">Reset Password</h2>
+                <div>
+                    <label for="otp" class="block text-sm font-medium change-text">Enter OTP</label>
+                    <input type="text" id="otp" name="otp" required class="w-full px-4 py-2 mt-1 text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:outline-none change-input">
+                </div>
+                <button type="submit" class="w-full py-2 text-white bg-cyan-500 rounded-lg hover:bg-cyan-600 focus:ring-2 focus:ring-cyan-500 focus:outline-none">
+                    Submit OTP
+                </button>
+                <i class="cancel-login fa-solid fa-arrow-left absolute top-[-40px] left-[8px] text-2xl change-text"></i>
+            </form>
+    
+            <form id="reset-password-form" class="hidden space-y-4 relative">
+                <h2 class="text-2xl font-bold text-center change-text">Set New Password</h2>
+                <div>
+                    <label for="new-password" class="block text-sm font-medium change-text">New Password</label>
+                    <input type="password" id="new-password" name="new-password" required class="w-full px-4 py-2 mt-1 text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:outline-none change-input">
+                </div>
+                <div>
+                    <label for="confirm-password" class="block text-sm font-medium change-text">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required class="w-full px-4 py-2 mt-1 text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:outline-none change-input">
+                </div>
+                <button type="submit" class="w-full py-2 text-white bg-cyan-500 rounded-lg hover:bg-cyan-600 focus:ring-2 focus:ring-cyan-500 focus:outline-none">
+                    Save Password
+                </button>
+                <i class="cancel-login fa-solid fa-arrow-left absolute top-[-40px] left-[8px] text-2xl change-text"></i>
+            </form>
+        </div>
+    </section>
+    
+    <script src="../js/common.js"></script>
+    <script src="../js/login.js"></script>
+</body>
+
+</html>

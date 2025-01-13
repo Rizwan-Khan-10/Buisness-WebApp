@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="text-white bg-slate-200 relative">
+    <nav class="w-full flex py-5 justify-between items-baseline bg-cyan-500 fixed top-0 left-0 z-10 md:py-2">
+        <div class="px-5">Buisness</div>
+        <div id="nav-menu"
+            class="w-2/4 sm:w-2/5 hidden flex-col items-start space-y-2 bg-cyan-400 md:bg-transparent absolute top-0 right-0 p-5 md:static md:w-3/4 md:space-y-0 md:flex md:flex-row md:items-center md:justify-between">
+            <li class="list-none relative block md:hidden">
+                <i id="close-icon" class="fa-solid fa-times text-white text-xl cursor-pointer"></i>
+            </li>
+            <li class="list-none relative">
+                <a href="index.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Home
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="store.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    <i class="fa-solid fa-shop"></i>
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="inventory.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Inventory
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="bills.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Bills
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="revenue.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Revenue
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="about.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    About
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="contact.html"
+                    class="text-slate-800 after:absolute after:w-[50%] after:h-[2px] after:top-[22px] after:left-0 after:bg-slate-800 after:content-['']">
+                    Contact
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a
+                    class="text-white cursor-pointer hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    <i id="mode" class="fa-solid fa-lightbulb"></i>
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="register.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Register
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="login.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Login
+                </a>
+            </li>
+        </div>
+        <div id="hamburger" class="block md:hidden px-5">
+            <i class="text-xl fa-solid fa-bars"></i>
+        </div>
+    </nav>
+    <div class="text-center mt-20 py-5 change-text">
+        <h1 class="text-3xl font-bold">Get in Touch</h1>
+        <p class="mt-2">We’d love to hear from you! Feel free to reach out for any inquiries.</p>
+    </div>
+    <section class="flex items-center justify-center px-5 mb-10">
+        <div class="shadow-lg rounded-lg max-w-md w-full px-6 py-5 border border-black">
+            <h2 class="text-2xl font-bold text-center mb-5 change-text">Contact Us</h2>
+            <form action="#" method="POST" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-sm font-medium change-text mb-1">Your Name <span
+                        class="text-red-500">*</span></label>
+                    <input type="text" id="name" name="name"
+                        class="w-full change-input px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-cyan-500 focus:border-cyan-500"
+                        placeholder="Enter your name" required />
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium change-text mb-1">Your Email <span
+                        class="text-red-500">*</span></label>
+                    <input type="email" id="email" name="email"
+                        class="w-full change-input px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-cyan-500 focus:border-cyan-500"
+                        placeholder="Enter your email" required />
+                </div>
+                <div>
+                    <label for="subject" class="block text-sm font-medium change-text mb-1">Subject <span
+                        class="text-red-500">*</span></label>
+                    <input type="text" id="subject" name="subject"
+                        class="w-full change-input px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-cyan-500 focus:border-cyan-500"
+                        placeholder="Enter subject" required />
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium change-text mb-1">Your Message <span
+                        class="text-red-500">*</span></label>
+                    <textarea id="message" name="message" rows="4"
+                        class="w-full change-input px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-cyan-500 focus:border-cyan-500"
+                        placeholder="Type your message here..." required></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit"
+                        class="w-full bg-cyan-500 text-white font-medium py-2 px-4 rounded-lg shadow-lg hover:bg-cyan-600 transition duration-300">
+                        Send Message
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <div class="mb-10 space-y-5 text-center">
+        <div class="flex items-baseline justify-center">
+            <i class="fa-solid fa-envelope change-text text-xl"></i>
+            <p class="change-text ml-1 text-xl">contact@business.com</p>
+        </div>
+    </div>
+    <footer class="bg-cyan-500 text-white text-center py-5">
+        <p>&copy; 2024 Business Name. All rights reserved.</p>
+    </footer>
+    <script src="../js/common.js"></script>
+    <script src="../js/contact.js"></script>
+</body>
+
+</html>

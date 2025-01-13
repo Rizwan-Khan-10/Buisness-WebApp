@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="text-white bg-slate-200 relative">
+    <nav class="w-full flex py-5 justify-between items-baseline bg-cyan-500 fixed top-0 left-0 z-10 md:py-2">
+        <div class="px-5">Buisness</div>
+        <div id="nav-menu"
+            class="w-2/4 sm:w-2/5 hidden flex-col items-start space-y-2 bg-cyan-400 md:bg-transparent absolute top-0 right-0 p-5 md:static md:w-3/4 md:space-y-0 md:flex md:flex-row md:items-center md:justify-between">
+            <li class="list-none relative block md:hidden">
+                <i id="close-icon" class="fa-solid fa-times text-white text-xl cursor-pointer"></i>
+            </li>
+            <li class="list-none relative">
+                <a href="index.html"
+                    class="text-white  hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Home
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="store.html"
+                    class="text-slate-800 after:absolute after:w-[50%] after:h-[2px] after:top-[22px] after:left-0 after:bg-slate-800 after:content-['']">
+                    <i class="fa-solid fa-shop"></i>
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="inventory.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Inventory
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="bills.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Bills
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="revenue.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Revenue
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="about.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    About
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="contact.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Contact
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a
+                    class="text-white cursor-pointer hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    <i id="mode" class="fa-solid fa-lightbulb"></i>
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="register.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Register
+                </a>
+            </li>
+            <li class="list-none relative">
+                <a href="login.html"
+                    class="text-white hover:text-slate-800 hover:after:absolute hover:after:w-[50%] hover:after:h-[2px] hover:after:top-[22px] hover:after:left-0 hover:after:bg-slate-800 hover:after:content-['']">
+                    Login
+                </a>
+            </li>
+        </div>
+        <div id="hamburger" class="block md:hidden px-5">
+            <i class="text-xl fa-solid fa-bars"></i>
+        </div>
+    </nav>
+    <main id="user-info" class="mt-28 mx-5 lg:mx-20 min-h-screen">
+        <section class="mb-8 max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row gap-8 mb-8">
+                <div class="text-left flex-1">
+                    <h2 class="text-3xl font-bold text-center mb-6 change-text">Store</h2>
+                    <div id="store-details" class="space-y-8 cursor-pointer">
+                    </div>
+                    <div class="flex justify-center">
+                        <button id="add-store"
+                            class="mt-4 px-6 py-2 bg-cyan-500 hover:bg-cyan-600 text-white rounded">Add
+                            Store</button>
+                    </div>
+                </div>
+
+                <div class="flex-1">
+                    <h2 class="text-3xl font-bold text-center mb-6 change-text">Admin</h2>
+                    <div id="admin-details" class="space-y-8 cursor-pointer">
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="flex-1">
+                    <h2 class="text-3xl font-bold text-center mb-6 change-text">Co-Admins</h2>
+                    <div id="coadmin-details" class="space-y-8 cursor-pointer">
+                    </div>
+                    <div class="flex justify-center">
+                        <button id="add-coadmin"
+                            class="mt-4 px-6 py-2 bg-cyan-500 hover:bg-cyan-600 text-white rounded">Add
+                            Co-Admin</button>
+                    </div>
+                </div>
+
+                <div class="flex-1">
+                    <h2 class="text-3xl font-bold text-center mb-6 change-text">Members</h2>
+                    <div id="member-details" class="space-y-8 cursor-pointer">
+                    </div>
+                    <div class="flex justify-center">
+                        <button id="add-member"
+                            class="mt-4 px-6 py-2 bg-cyan-500 hover:bg-cyan-600 text-white rounded">Add
+                            Member</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <section id="forms" class="flex justify-center items-center">
+        <div id="store-form" class="mt-28 hidden items-center justify-center p-4">
+            <form class="border border-black shadow-md rounded-lg p-6 w-full max-w-lg space-y-4">
+                <h2 class="text-2xl font-semibold change-text text-center mb-4">Store Details</h2>
+
+                <div class="flex flex-col">
+                    <label for="store-name" class="text-sm font-medium change-text mb-1">
+                        Store Name <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="store-name" placeholder="Enter store name"
+                        class="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                        required />
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="store-address" class="text-sm font-medium change-text mb-1">
+                        Address <span class="text-red-500">*</span>
+                    </label>
+                    <textarea id="store-address" placeholder="Enter store address"
+                        class="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                        rows="3" required></textarea>
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="store-logo" class="text-sm font-medium change-text mb-1">Logo</label>
+                    <input type="file" id="store-logo" name="store-logo" accept="image/*"
+                        class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="store-email" class="text-sm font-medium change-text mb-1">Email</label>
+                    <input type="email" id="store-email" placeholder="Enter store email"
+                        class="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input" />
+                </div>
+                <div class="flex flex-col">
+                    <label for="store-contact" class="text-sm font-medium change-text mb-1">Contact</label>
+                    <input type="tel" id="store-contact" placeholder="Enter contact number"
+                        class="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input" />
+                </div>
+                <div class="flex flex-col justify-evenly items-center gap-5 sm:flex-row">
+                    <button type="submit"
+                        class="w-28 bg-green-500 text-white font-medium py-2 px-4 rounded-md hover:bg-green-600">Submit</button>
+                    <button type="button" id="cancel-store-form"
+                        class="w-28 bg-cyan-500 text-white font-medium py-2 px-4 rounded-md hover:bg-cyan-600">Cancel</button>
+                </div>
+            </form>
+        </div>
+        <div id="user-form" class="max-w-4xl mx-auto mt-28 hidden items-center justify-center p-4">
+            <form class="border border-black shadow-md rounded-lg p-6 w-full space-y-4">
+                <h2 class="text-2xl font-semibold change-text text-center mb-4">Add User Details</h2>
+                <div class="flex flex-col sm:flex-row sm:space-x-4">
+                    <div class="flex flex-col w-full mb-4 sm:mb-0">
+                        <label for="first-name" class="text-sm font-medium change-text mb-1">First Name <span
+                                class="text-red-500">*</span></label>
+                        <input type="text" id="first-name" placeholder="Enter first name"
+                            class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                            required />
+                    </div>
+                    <div class="flex flex-col w-full mb-4 sm:mb-0">
+                        <label for="middle-name" class="text-sm font-medium change-text mb-1">Middle Name</label>
+                        <input type="text" id="middle-name" placeholder="Enter middle name"
+                            class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input" />
+                    </div>
+                    <div class="flex flex-col w-full sm:mb-0">
+                        <label for="last-name" class="text-sm font-medium change-text mb-1">Last Name <span
+                                class="text-red-500">*</span></label>
+                        <input type="text" id="last-name" placeholder="Enter last name"
+                            class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                            required />
+                    </div>
+                </div>
+                <div class="flex flex-col mb-4">
+                    <label for="address" class="text-sm font-medium change-text mb-1">Address <span
+                            class="text-red-500">*</span></label>
+                    <textarea id="address" placeholder="Enter address"
+                        class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                        rows="3" required></textarea>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:space-x-4 mb-4">
+                    <div class="flex flex-col w-full mb-4 sm:mb-0">
+                        <label for="user-image" class="text-sm font-medium change-text mb-1">Image</label>
+                        <input type="file" id="user-image" name="user-image" accept="image/*"
+                            class="block w-full border border-gray-300 rounded-md py-1 h-10 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input" />
+                    </div>
+                    <div class="flex flex-col w-full">
+                        <label for="contact" class="text-sm font-medium change-text mb-1">Contact <span
+                                class="text-red-500">*</span></label>
+                        <input type="tel" id="contact" placeholder="Enter contact number"
+                            class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                            required />
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:space-x-4 mb-4">
+                    <div class="flex flex-col w-full mb-4 sm:w-1/5 sm:mb-0">
+                        <label for="gender" class="text-sm font-medium change-text mb-1">Gender <span
+                                class="text-red-500">*</span></label>
+                        <select id="gender"
+                            class="border cursor-pointer border-gray-300 rounded-lg shadow-sm px-1 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                            required>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-col w-full mb-4 sm:w-1/5 sm:mb-0">
+                        <label for="dob" class="text-sm font-medium change-text mb-1">Date of Birth <span
+                                class="text-red-500">*</span></label>
+                        <input type="date" id="dob"
+                            class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-cyan-500 change-input"
+                            required />
+                    </div>
+                    <div class="flex flex-col w-full mb-4 sm:w-3/5 sm:mb-0">
+                        <label for="email" class="text-sm font-medium change-text mb-1">Email <span
+                                class="text-red-500">*</span></label>
+                        <input type="email" id="email" placeholder="Enter email"
+                            class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                            required />
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:space-x-4 mb-4">
+                    <div class="flex flex-col w-full mb-4 sm:mb-0">
+                        <label for="otp" class="text-sm font-medium change-text mb-1">OTP <span
+                                class="text-red-500">*</span></label>
+                        <input type="text" id="otp" placeholder="Enter OTP"
+                            class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                            required />
+                    </div>
+                    <div class="flex flex-col w-full justify-evenly items-end sm:flex-row">
+                        <button type="button" id="get-otp"
+                            class="w-full sm:w-[40%] bg-cyan-500 text-white font-medium py-2 px-4 h-10 rounded-md hover:bg-cyan-600">
+                            Get OTP
+                        </button>
+                        <button type="button" id="verify-otp"
+                            class="w-full sm:w-[40%] bg-green-500 text-white font-medium mt-4 sm:mt-0 py-2 px-4 h-10 rounded-md hover:bg-green-600">
+                            Verify OTP
+                        </button>
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:space-x-4 mb-4">
+                    <div class="flex flex-col w-full mb-4 sm:mb-0">
+                        <label for="password" class="text-sm font-medium change-text mb-1">Password <span
+                                class="text-red-500">*</span></label>
+                        <input type="password" id="password" placeholder="Enter password"
+                            class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                            required />
+                    </div>
+                    <div class="flex flex-col w-full">
+                        <label for="confirm-password" class="text-sm font-medium change-text mb-1">Confirm Password
+                            <span class="text-red-500">*</span></label>
+                        <input type="password" id="confirm-password" placeholder="Confirm password"
+                            class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                            required />
+                    </div>
+                </div>
+                <div class="flex flex-col mb-4">
+                    <h3 class="text-lg font-medium mb-4">Select to Allow:</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <label class="flex items-center space-x-2" style="width: 200px;">
+                            <input type="checkbox" name="permissions" value="add-member" class="w-5 h-5">
+                            <span>Add Member</span>
+                        </label>
+                        <label class="flex items-center space-x-2" style="width: 200px;">
+                            <input type="checkbox" name="permissions" value="edit-member" class="w-5 h-5">
+                            <span>Edit Member</span>
+                        </label>
+                        <label class="flex items-center space-x-2" style="width: 200px;">
+                            <input type="checkbox" name="permissions" value="remove-member" class="w-5 h-5">
+                            <span>Remove Member</span>
+                        </label>
+                        <label class="flex items-center space-x-2" style="width: 200px;">
+                            <input type="checkbox" name="permissions" value="view-revenue" class="w-5 h-5">
+                            <span>View Revenue</span>
+                        </label>
+                        <label class="flex items-center space-x-2" style="width: 200px;">
+                            <input type="checkbox" name="permissions" value="edit-bill" class="w-5 h-5">
+                            <span>Edit Bill</span>
+                        </label>
+                        <label class="flex items-center space-x-2" style="width: 200px;">
+                            <input type="checkbox" name="permissions" value="delete-bill" class="w-5 h-5">
+                            <span>Refund Bill</span>
+                        </label>
+                        <label class="flex items-center space-x-2" style="width: 200px;">
+                            <input type="checkbox" name="permissions" value="view-inventory" class="w-5 h-5">
+                            <span>View Inventory</span>
+                        </label>
+                        <label class="flex items-center space-x-2" style="width: 200px;">
+                            <input type="checkbox" name="permissions" value="add-inventory" class="w-5 h-5">
+                            <span>Add Inventory</span>
+                        </label>
+                        <label class="flex items-center space-x-2" style="width: 200px;">
+                            <input type="checkbox" name="permissions" value="remove-inventory" class="w-5 h-5">
+                            <span>Remove Inventory</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="flex flex-col justify-center sm:flex-row sm:justify-around gap-3">
+                    <button type="submit" id="submit-form"
+                        class="bg-green-500 w-full sm:w-[150px] text-white font-medium py-2 px-4 rounded-md hover:bg-green-600">
+                        Submit
+                    </button>
+                    <button type="button" id="cancel-form"
+                        class="bg-blue-500 w-full sm:w-[150px] text-white font-medium py-2 px-4 rounded-md hover:bg-blue-600">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section id="charges-section" class="flex flex-col border-y border-black gap-10 py-5 px-5 md:px-10">
+        <h2 class="change-text text-2xl md:text-3xl font-bold text-center">Charges</h2>
+        <div class="flex flex-wrap justify-center gap-8">
+            <div class="flex flex-col w-full md:w-[48%] items-center">
+                <div class="w-full max-w-lg">
+                    <div id="display-charges" class="flex flex-col">
+                        <h2 class="change-text text-2xl md:text-3xl font-bold text-center mb-4">Bill Charges</h2>
+                        <ul class="mb-4 border rounded-lg p-4 change-border">
+                            <li class="flex justify-between items-center py-1 border-y change-border">
+                                <span class="change-text">Service Tax</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="change-text">₹200</span>
+                                    <i class="fa-solid fa-pen change-text"></i>
+                                </div>
+                            </li>
+                            <li class="flex justify-between items-center py-1 border-y change-border">
+                                <span class="change-text">GST</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="change-text">18%</span>
+                                    <i class="fa-solid fa-pen change-text"></i>
+                                </div>
+                            </li>
+                            <li class="flex justify-between items-center py-1 border-y change-border">
+                                <span class="change-text">Delivery Fee</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="change-text">₹50</span>
+                                    <i class="fa-solid fa-pen change-text"></i>
+                                </div>
+                            </li>
+                        </ul>
+                        <h2 class="mb-2 text-center sm:text-xl change-text">These charges will be applied to the total
+                            bill amount
+                            if
+                            selected.</h2>
+                        <button id="add-charge" type="button"
+                            class="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded-lg">
+                            Add Bill Charge
+                        </button>
+                    </div>
+                    <div id="new-charge" class="hidden flex-col gap-4 mt-6 border rounded-lg p-4 change-border">
+                        <div class="flex flex-col">
+                            <label class="change-text text-sm md:text-base mb-1">Charge Name</label>
+                            <input type="text"
+                                class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                placeholder="Enter Charge Name" />
+                        </div>
+                        <div class="flex gap-4 items-end">
+                            <div class="w-[35%] flex flex-col">
+                                <label class="change-text text-sm md:text-base mb-1">Charge Type</label>
+                                <select
+                                    class="border cursor-pointer border-gray-300 rounded-lg shadow-sm px-1 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                                    <option value="price">₹</option>
+                                    <option value="percent">%</option>
+                                </select>
+                            </div>
+                            <div class="w-[60%] flex flex-col">
+                                <label class="change-text text-sm md:text-base mb-1">Amount</label>
+                                <input type="number"
+                                    class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                    placeholder="Enter Amount" />
+                            </div>
+                        </div>
+                        <div class="flex justify-end gap-4 mt-4">
+                            <button type="submit"
+                                class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base rounded-lg">
+                                Add Charge
+                            </button>
+                            <button id="cancel-new-charge" type="button"
+                                class="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded-lg">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col w-full md:w-[48%] items-center">
+                <div class="w-full max-w-lg">
+                    <div id="display-cards" class="flex flex-col">
+                        <h2 class="change-text text-2xl md:text-3xl font-bold text-center mb-4">Card Charges</h2>
+                        <ul class="mb-4 border rounded-lg p-4 change-border">
+                            <li class="flex justify-between items-center py-1 border-y change-border">
+                                <span class="change-text">Platinum Card</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="change-text">₹500</span>
+                                    <i class="fa-solid fa-pen change-text"></i>
+                                </div>
+                            </li>
+                            <li class="flex justify-between items-center py-1 border-y change-border">
+                                <span class="change-text">Gold Card</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="change-text">₹250</span>
+                                    <i class="fa-solid fa-pen change-text"></i>
+                                </div>
+                            </li>
+                            <li class="flex justify-between items-center py-1 border-y change-border">
+                                <span class="change-text">Silver Card</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="change-text">₹100</span>
+                                    <i class="fa-solid fa-pen change-text"></i>
+                                </div>
+                            </li>
+                        </ul>
+                        <h2 class="mb-2 text-center sm:text-xl change-text">These charges will be applied based on the
+                            type of card
+                            used for the payment.</h2>
+                        <button id="add-card" type="button"
+                            class="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded-lg">
+                            Add Card Charge
+                        </button>
+                    </div>
+                    <div id="new-card" class="hidden flex-col gap-4 mt-6 border rounded-lg p-4 change-border">
+                        <div class="flex flex-col">
+                            <label class="change-text text-sm md:text-base mb-1">Charge Name</label>
+                            <input type="text"
+                                class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                placeholder="Enter Charge Name" />
+                        </div>
+                        <div class="flex gap-4 items-end">
+                            <div class="w-[35%] flex flex-col">
+                                <label class="change-text text-sm md:text-base mb-1">Charge Type</label>
+                                <select
+                                    class="border cursor-pointer border-gray-300 rounded-lg shadow-sm px-1 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                                    <option value="price">₹</option>
+                                    <option value="percent">%</option>
+                                </select>
+                            </div>
+                            <div class="w-[60%] flex flex-col">
+                                <label class="change-text text-sm md:text-base mb-1">Amount</label>
+                                <input type="number"
+                                    class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                    placeholder="Enter Amount" />
+                            </div>
+                        </div>
+                        <div class="flex justify-end gap-4 mt-4">
+                            <button type="submit"
+                                class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base rounded-lg">
+                                Add Card
+                            </button>
+                            <button id="cancel-new-card" type="button"
+                                class="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded-lg">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col w-full md:w-[48%] items-center mb-5">
+                <div class="w-full max-w-lg">
+                    <div id="display-product-charge" class="flex flex-col">
+                        <h2 class="change-text text-2xl md:text-3xl font-bold text-center mb-4">Product Charges</h2>
+                        <ul class="mb-4 border rounded-lg p-4 change-border">
+                            <li class="flex justify-between items-center py-1 border-y change-border">
+                                <span class="change-text">Packaging Charge</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="change-text">₹500</span>
+                                    <i class="fa-solid fa-pen change-text"></i>
+                                </div>
+                            </li>
+                            <li class="flex justify-between items-center py-1 border-y change-border">
+                                <span class="change-text">Handling Charge</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="change-text">₹250</span>
+                                    <i class="fa-solid fa-pen change-text"></i>
+                                </div>
+                            </li>
+                        </ul>
+                        <h2 class="mb-2 text-center sm:text-xl change-text">These charges will be applied to the product
+                            if
+                            selected.</h2>
+                        <button id="add-product-charge" type="button"
+                            class="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded-lg">
+                            Add Product Charge
+                        </button>
+                    </div>
+                    <div id="new-product-charge" class="hidden flex-col gap-4 mt-6 border rounded-lg p-4 change-border">
+                        <div class="flex flex-col">
+                            <label class="change-text text-sm md:text-base mb-1">Charge Name</label>
+                            <input type="text"
+                                class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                placeholder="Enter Charge Name" />
+                        </div>
+                        <div class="flex gap-4 items-end">
+                            <div class="w-[35%] flex flex-col">
+                                <label class="change-text text-sm md:text-base mb-1">Charge Type</label>
+                                <select
+                                    class="border cursor-pointer border-gray-300 rounded-lg shadow-sm px-1 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                                    <option value="price">₹</option>
+                                    <option value="percent">%</option>
+                                </select>
+                            </div>
+                            <div class="w-[60%] flex flex-col">
+                                <label class="change-text text-sm md:text-base mb-1">Amount</label>
+                                <input type="number"
+                                    class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                    placeholder="Enter Amount" />
+                            </div>
+                        </div>
+                        <div class="flex justify-end gap-4 mt-4">
+                            <button type="submit"
+                                class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base rounded-lg">
+                                Add Card
+                            </button>
+                            <button id="cancel-new-product-charge" type="button"
+                                class="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded-lg">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="inventory-details" class="max-w-7xl mx-auto px-4 py-8">
+        <h2 class="text-3xl font-bold text-center mb-6 text-white change-text">Low Stock</h2>
+        <div class="overflow-x-auto">
+            <table id="inventory-table" class="w-full table-auto border-collapse border border-gray-300">
+                <thead class="bg-gray-800 text-white">
+                    <tr>
+                        <th class="px-4 py-2 border-b border-gray-300">Name</th>
+                        <th class="w-[122px] px-4 py-2 border-b border-gray-300">Image</th>
+                        <th class="px-4 py-2 border-b border-gray-300">Code</th>
+                        <th class="px-4 py-2 border-b border-gray-300">Quantity/th>
+                        <th class="px-4 py-2 border-b border-gray-300">Category</th>
+                        <th class="px-4 py-2 border-b border-gray-300">Location</th>
+                        <th class="w-[122px] px-4 py-2 border-b border-gray-300">L-Image</th>
+                        <th class="px-4 py-2 border-b border-gray-300">R-Price</th>
+                        <th class="px-4 py-2 border-b border-gray-300">S-Price</th>
+                        <th class="px-4 py-2 border-b border-gray-300">Tax</th>
+                        <th class="px-4 py-2 border-b border-gray-300">Packaging</th>
+                        <th class="px-4 py-2 border-b border-gray-300">Handling</th>
+                        <th class="px-4 py-2 border-b border-gray-300">Date</th>
+                    </tr>
+                </thead>
+                <tbody id="stock-details" class="bg-white text-black text-center cursor-pointer">
+                </tbody>
+            </table>
+        </div>
+        <div class="flex justify-center">
+            <a href="inventory.html">
+                <button class="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 mt-4 rounded">Go to Inventory</button>
+            </a>
+        </div>
+    </div>
+    <script src="../js/common.js"></script>
+    <script src="../js/store.js"></script>
+</body>
+
+</html>
