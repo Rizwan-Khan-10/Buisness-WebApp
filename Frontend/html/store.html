@@ -132,8 +132,8 @@
     </main>
     <section id="forms" class="flex justify-center items-center">
         <div id="store-form" class="mt-28 hidden items-center justify-center p-4">
-            <form class="border border-black shadow-md rounded-lg p-6 w-full max-w-lg space-y-4">
-                <h2 class="text-2xl font-semibold change-text text-center mb-4">Store Details</h2>
+            <form class="border border-black shadow-md rounded-lg p-6 w-full max-w-lg space-y-4" method="post">
+                <h2 class="text-2xl font-semibold change-text text-center mb-4" id="store">Store Details</h2>
 
                 <div class="flex flex-col">
                     <label for="store-name" class="text-sm font-medium change-text mb-1">
@@ -178,13 +178,13 @@
             </form>
         </div>
         <div id="user-form" class="max-w-4xl mx-auto mt-28 hidden items-center justify-center p-4">
-            <form class="border border-black shadow-md rounded-lg p-6 w-full space-y-4">
-                <h2 class="text-2xl font-semibold change-text text-center mb-4">Add User Details</h2>
+            <form class="border border-black shadow-md rounded-lg p-6 w-full space-y-4" method="post">
+                <h2 id="user" class="text-2xl font-semibold change-text text-center mb-4">Add User Details</h2>
                 <div class="flex flex-col sm:flex-row sm:space-x-4">
                     <div class="flex flex-col w-full mb-4 sm:mb-0">
                         <label for="first-name" class="text-sm font-medium change-text mb-1">First Name <span
                                 class="text-red-500">*</span></label>
-                        <input type="text" id="first-name" placeholder="Enter first name"
+                        <input type="text" id="first-name" placeholder="Enter first name" autocomplete="given-name"
                             class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
                             required />
                     </div>
@@ -204,7 +204,7 @@
                 <div class="flex flex-col mb-4">
                     <label for="address" class="text-sm font-medium change-text mb-1">Address <span
                             class="text-red-500">*</span></label>
-                    <textarea id="address" placeholder="Enter address"
+                    <textarea id="address" placeholder="Enter address" autocomplete="address"
                         class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
                         rows="3" required></textarea>
                 </div>
@@ -243,7 +243,7 @@
                     <div class="flex flex-col w-full mb-4 sm:w-3/5 sm:mb-0">
                         <label for="email" class="text-sm font-medium change-text mb-1">Email <span
                                 class="text-red-500">*</span></label>
-                        <input type="email" id="email" placeholder="Enter email"
+                        <input type="email" id="email" placeholder="Enter email" autocomplete="email"
                             class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
                             required />
                     </div>
@@ -283,46 +283,9 @@
                             required />
                     </div>
                 </div>
-                <div class="flex flex-col mb-4">
-                    <h3 class="text-lg font-medium mb-4">Select to Allow:</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <label class="flex items-center space-x-2" style="width: 200px;">
-                            <input type="checkbox" name="permissions" value="add-member" class="w-5 h-5">
-                            <span>Add Member</span>
-                        </label>
-                        <label class="flex items-center space-x-2" style="width: 200px;">
-                            <input type="checkbox" name="permissions" value="edit-member" class="w-5 h-5">
-                            <span>Edit Member</span>
-                        </label>
-                        <label class="flex items-center space-x-2" style="width: 200px;">
-                            <input type="checkbox" name="permissions" value="remove-member" class="w-5 h-5">
-                            <span>Remove Member</span>
-                        </label>
-                        <label class="flex items-center space-x-2" style="width: 200px;">
-                            <input type="checkbox" name="permissions" value="view-revenue" class="w-5 h-5">
-                            <span>View Revenue</span>
-                        </label>
-                        <label class="flex items-center space-x-2" style="width: 200px;">
-                            <input type="checkbox" name="permissions" value="edit-bill" class="w-5 h-5">
-                            <span>Edit Bill</span>
-                        </label>
-                        <label class="flex items-center space-x-2" style="width: 200px;">
-                            <input type="checkbox" name="permissions" value="delete-bill" class="w-5 h-5">
-                            <span>Refund Bill</span>
-                        </label>
-                        <label class="flex items-center space-x-2" style="width: 200px;">
-                            <input type="checkbox" name="permissions" value="view-inventory" class="w-5 h-5">
-                            <span>View Inventory</span>
-                        </label>
-                        <label class="flex items-center space-x-2" style="width: 200px;">
-                            <input type="checkbox" name="permissions" value="add-inventory" class="w-5 h-5">
-                            <span>Add Inventory</span>
-                        </label>
-                        <label class="flex items-center space-x-2" style="width: 200px;">
-                            <input type="checkbox" name="permissions" value="remove-inventory" class="w-5 h-5">
-                            <span>Remove Inventory</span>
-                        </label>
-                    </div>
+                <div id="permission-div" class="flex flex-col mb-4">
+                    <h3 class="text-lg font-medium mb-4 change-text">Select to Allow:</h3>
+                    <div id="permissions" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
                 </div>
                 <div class="flex flex-col justify-center sm:flex-row sm:justify-around gap-3">
                     <button type="submit" id="submit-form"
@@ -368,38 +331,41 @@
                             </li>
                         </ul>
                         <h2 class="mb-2 text-center sm:text-xl change-text">These charges will be applied to the total
-                            bill amount
-                            if
-                            selected.</h2>
+                            bill amount if selected.</h2>
                         <button id="add-charge" type="button"
                             class="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded-lg">
                             Add Bill Charge
                         </button>
                     </div>
-                    <div id="new-charge" class="hidden flex-col gap-4 mt-6 border rounded-lg p-4 change-border">
+                    <form id="new-charge"
+                        class="hidden flex-col gap-4 mt-6 border rounded-lg p-4 change-border transition-all duration-300 ease-in-out"
+                        method="post">
                         <div class="flex flex-col">
-                            <label class="change-text text-sm md:text-base mb-1">Charge Name</label>
-                            <input type="text"
+                            <label for="charge-name" class="change-text text-sm md:text-base mb-1">Charge Name <span
+                                    class="text-red-600 text-xl">*</span></label>
+                            <input id="charge-name" name="charge_name" type="text"
                                 class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
                                 placeholder="Enter Charge Name" />
                         </div>
                         <div class="flex gap-4 items-end">
                             <div class="w-[35%] flex flex-col">
-                                <label class="change-text text-sm md:text-base mb-1">Charge Type</label>
-                                <select
+                                <label for="charge-type" class="change-text text-sm md:text-base mb-1">Charge
+                                    Type</label>
+                                <select id="charge-type" name="charge_type"
                                     class="border cursor-pointer border-gray-300 rounded-lg shadow-sm px-1 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 change-input">
                                     <option value="price">₹</option>
                                     <option value="percent">%</option>
                                 </select>
                             </div>
                             <div class="w-[60%] flex flex-col">
-                                <label class="change-text text-sm md:text-base mb-1">Amount</label>
-                                <input type="number"
+                                <label for="charge-amount" class="change-text text-sm md:text-base mb-1">Amount <span
+                                        class="text-red-600 text-xl">*</span></label>
+                                <input id="charge-amount" name="charge_amount" type="number"
                                     class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
                                     placeholder="Enter Amount" />
                             </div>
                         </div>
-                        <div class="flex justify-end gap-4 mt-4">
+                        <div class="flex flex-col sm:flex-row justify-center sm:justify-around gap-4 mt-4">
                             <button type="submit"
                                 class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base rounded-lg">
                                 Add Charge
@@ -409,7 +375,7 @@
                                 Cancel
                             </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="flex flex-col w-full md:w-[48%] items-center">
@@ -440,37 +406,43 @@
                             </li>
                         </ul>
                         <h2 class="mb-2 text-center sm:text-xl change-text">These charges will be applied based on the
-                            type of card
-                            used for the payment.</h2>
+                            type of card used for the payment.</h2>
                         <button id="add-card" type="button"
                             class="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded-lg">
                             Add Card Charge
                         </button>
                     </div>
-                    <div id="new-card" class="hidden flex-col gap-4 mt-6 border rounded-lg p-4 change-border">
+                    <form id="new-card"
+                        class="hidden flex-col gap-4 mt-6 border rounded-lg p-4 change-border transition-all duration-300 ease-in-out"
+                        method="post">
                         <div class="flex flex-col">
-                            <label class="change-text text-sm md:text-base mb-1">Charge Name</label>
-                            <input type="text"
+                            <label for="card-charge-name" class="change-text text-sm md:text-base mb-1">
+                                Charge Name <span class="text-red-600 text-xl">*</span>
+                            </label>
+                            <input id="card-charge-name" name="charge_name" type="text"
                                 class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
                                 placeholder="Enter Charge Name" />
                         </div>
                         <div class="flex gap-4 items-end">
                             <div class="w-[35%] flex flex-col">
-                                <label class="change-text text-sm md:text-base mb-1">Charge Type</label>
-                                <select
+                                <label for="card-charge-type" class="change-text text-sm md:text-base mb-1">Charge
+                                    Type</label>
+                                <select id="card-charge-type" name="charge_type"
                                     class="border cursor-pointer border-gray-300 rounded-lg shadow-sm px-1 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 change-input">
                                     <option value="price">₹</option>
                                     <option value="percent">%</option>
                                 </select>
                             </div>
                             <div class="w-[60%] flex flex-col">
-                                <label class="change-text text-sm md:text-base mb-1">Amount</label>
-                                <input type="number"
+                                <label for="card-charge-amount" class="change-text text-sm md:text-base mb-1">
+                                    Amount <span class="text-red-600 text-xl">*</span>
+                                </label>
+                                <input id="card-charge-amount" name="charge_amount" type="number"
                                     class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
                                     placeholder="Enter Amount" />
                             </div>
                         </div>
-                        <div class="flex justify-end gap-4 mt-4">
+                        <div class="flex flex-col sm:flex-row justify-center sm:justify-around gap-4 mt-4">
                             <button type="submit"
                                 class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base rounded-lg">
                                 Add Card
@@ -480,7 +452,7 @@
                                 Cancel
                             </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="flex flex-col w-full md:w-[48%] items-center mb-5">
@@ -504,47 +476,52 @@
                             </li>
                         </ul>
                         <h2 class="mb-2 text-center sm:text-xl change-text">These charges will be applied to the product
-                            if
-                            selected.</h2>
+                            if selected.</h2>
                         <button id="add-product-charge" type="button"
                             class="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded-lg">
                             Add Product Charge
                         </button>
                     </div>
-                    <div id="new-product-charge" class="hidden flex-col gap-4 mt-6 border rounded-lg p-4 change-border">
+                    <form id="new-product-charge"
+                        class="hidden flex-col gap-4 mt-6 border rounded-lg p-4 change-border transition-all duration-300 ease-in-out">
                         <div class="flex flex-col">
-                            <label class="change-text text-sm md:text-base mb-1">Charge Name</label>
-                            <input type="text"
+                            <label for="product-charge-name" class="change-text text-sm md:text-base mb-1">
+                                Charge Name <span class="text-red-600 text-xl">*</span>
+                            </label>
+                            <input id="product-charge-name" name="charge_name" type="text"
                                 class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
                                 placeholder="Enter Charge Name" />
                         </div>
                         <div class="flex gap-4 items-end">
                             <div class="w-[35%] flex flex-col">
-                                <label class="change-text text-sm md:text-base mb-1">Charge Type</label>
-                                <select
+                                <label for="product-charge-type" class="change-text text-sm md:text-base mb-1">Charge
+                                    Type</label>
+                                <select id="product-charge-type" name="charge_type"
                                     class="border cursor-pointer border-gray-300 rounded-lg shadow-sm px-1 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 change-input">
                                     <option value="price">₹</option>
                                     <option value="percent">%</option>
                                 </select>
                             </div>
                             <div class="w-[60%] flex flex-col">
-                                <label class="change-text text-sm md:text-base mb-1">Amount</label>
-                                <input type="number"
+                                <label for="product-charge-amount" class="change-text text-sm md:text-base mb-1">
+                                    Amount <span class="text-red-600 text-xl">*</span>
+                                </label>
+                                <input id="product-charge-amount" name="charge_amount" type="number"
                                     class="border border-gray-300 rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
                                     placeholder="Enter Amount" />
                             </div>
                         </div>
-                        <div class="flex justify-end gap-4 mt-4">
+                        <div class="flex flex-col sm:flex-row justify-center sm:justify-around gap-4 mt-4">
                             <button type="submit"
                                 class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base rounded-lg">
-                                Add Card
+                                Add Charge
                             </button>
                             <button id="cancel-new-product-charge" type="button"
                                 class="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded-lg">
                                 Cancel
                             </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

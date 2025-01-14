@@ -11,6 +11,18 @@ const newProCharge = document.getElementById("new-product-charge");
 const canCharge = document.getElementById("cancel-new-charge");
 const canCard = document.getElementById("cancel-new-card");
 const canProCharge = document.getElementById("cancel-new-product-charge");
+const userRole = document.getElementById("user");
+const permissionsDiv = document.getElementById("permissions");
+
+const permissions = [
+    { value: "manage-member", label: "Manage Member", allow: "coadmin" },
+    { value: "manage-charges", label: "Manage Charges", allow: "coadmin" },
+    { value: "manage-discount", label: "Manage Discount", allow: "coadmin" },
+    { value: "view-purchased", label: "View Purchased Price", allow: "coadmin" },
+    { value: "view-revenue", label: "View Revenue", allow: "coadmin" },
+    { value: "manage-bill", label: "Manage Bill", allow: "member" },
+];
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const storeData = [
@@ -185,47 +197,106 @@ document.addEventListener("DOMContentLoaded", function () {
             info.appendChild(newDiv);
         });
     }
-
-
     displayProducts(products);
     displayStoreDetails('store', storeData);
     displayStoreDetails('admin', adminData);
     displayStoreDetails('coadmin', coAdminData);
     displayStoreDetails('member', memberData);
+    document.querySelector(".edit-admin").addEventListener("click", () => {
+        toggleVisibility(form, true, "admin", "edit");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    document.querySelectorAll(".edit-store").forEach(editButton => {
+        editButton.addEventListener("click", () => {
+            toggleVisibility(storeForm, true, "store", "edit");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    });
+
+    document.querySelectorAll(".edit-coadmin").forEach(editButton => {
+        editButton.addEventListener("click", () => {
+            toggleVisibility(form, true, "coadmin", "edit");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    });
+
+    document.querySelectorAll(".edit-member").forEach(editButton => {
+        editButton.addEventListener("click", () => {
+            toggleVisibility(form, true, "member", "edit");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    });
 });
 
-function hide(element) {
-    element.classList.remove("hidden");
-    element.classList.add("flex");
-    document.getElementById("user-info").classList.add("hidden");
-    document.getElementById("inventory-details").classList.add("hidden");
-    document.getElementById("charges-section").classList.remove("flex");
-    document.getElementById("charges-section").classList.add("hidden");
+function toggleVisibility(element, show, info, type) {
+    if (show) {
+        element.classList.remove("hidden");
+        element.classList.add("flex");
+        document.getElementById("user-info").classList.add("hidden");
+        document.getElementById("inventory-details").classList.add("hidden");
+        document.getElementById("charges-section").classList.remove("flex");
+        document.getElementById("charges-section").classList.add("hidden");
+        if (type === "new" && info === "store") {
+            document.getElementById("store").innerHTML = "Add Store Details";
+            storeForm.firstElementChild.method = "POST";
+        } else if (type === "edit" && info === "store") {
+            document.getElementById("store").innerHTML = "Edit Store Details";
+            storeForm.firstElementChild.method = "PUT";
+        } else if (type === "new" && info === "coadmin") {
+            document.getElementById("user").innerHTML = "Add Co-Admin Details";
+            form.firstElementChild.method = "POST";
+            renderPermissions(userRole.innerText);
+        } else if (type === "new" && info === "member") {
+            document.getElementById("user").innerHTML = "Add Member Details";
+            form.firstElementChild.method = "POST";
+            renderPermissions(userRole.innerText);
+        } else if (type === "edit" && info === "coadmin") {
+            document.getElementById("user").innerHTML = "Edit Co-Admin Details";
+            form.firstElementChild.method = "PUT";
+            renderPermissions(userRole.innerText);
+        } else if (type === "edit" && info === "member") {
+            document.getElementById("user").innerHTML = "Edit Member Details";
+            form.firstElementChild.method = "PUT";
+            renderPermissions(userRole.innerText);
+        } else if (type === "edit" && info === "admin") {
+            document.getElementById("user").innerHTML = "Edit Admin Details";
+            form.firstElementChild.method = "PUT";
+            renderPermissions(userRole.innerText);
+        }
+    } else {
+        element.classList.remove("flex");
+        element.classList.add("hidden");
+        document.getElementById("user-info").classList.remove("hidden");
+        document.getElementById("inventory-details").classList.remove("hidden");
+        document.getElementById("charges-section").classList.remove("hidden");
+        document.getElementById("charges-section").classList.add("flex");
+    }
 }
 
-function unhide(element) {
-    element.classList.remove("flex");
-    element.classList.add("hidden");
-    document.getElementById("user-info").classList.remove("hidden");
-    document.getElementById("inventory-details").classList.remove("hidden");
-    document.getElementById("charges-section").classList.remove("hidden");
-    document.getElementById("charges-section").classList.add("flex");
-}
+document.getElementById("add-store").addEventListener("click", () => {
+    toggleVisibility(storeForm, true, "store", "new");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+});
 
-document.getElementById("add-store").addEventListener('click', () => {
-    hide(storeForm);
+addCoadmin.addEventListener("click", () => {
+    toggleVisibility(form, true, "coadmin", "new");
+        window.scrollTo({ top: 0, behavior: "smooth" });
 });
-addCoadmin.addEventListener('click', () => {
-    hide(form);
+
+addMember.addEventListener("click", () => {
+    toggleVisibility(form, true, "member", "new");
+        window.scrollTo({ top: 0, behavior: "smooth" });
 });
-addMember.addEventListener('click', () => {
-    hide(form);
+
+document.getElementById("cancel-store-form").addEventListener("click", () => {
+    toggleVisibility(storeForm, false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
 });
-document.getElementById("cancel-store-form").addEventListener('click', () => {
-    unhide(storeForm);
-});
-document.getElementById("cancel-form").addEventListener('click', () => {
-    unhide(form);
+
+document.getElementById("cancel-form").addEventListener("click", (e) => {
+    toggleVisibility(form, false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 document.querySelectorAll('.edit-btn').forEach(icon => {
@@ -253,38 +324,84 @@ document.querySelectorAll('.edit-btn').forEach(icon => {
     });
 });
 
-addCard.addEventListener('click',()=>{
-    newCard.classList.remove("hidden");
-    newCard.classList.add("flex");
-    addCard.classList.add("hidden");
+function toggleCharges(form, btn, show) {
+    form.classList.toggle("hidden", !show);
+    form.classList.toggle("flex", show);
+    btn.classList.toggle("hidden", show);
+    const parent = btn.parentElement.parentElement.parentElement;
+    if (show) {
+        window.scrollTo({ top: form.offsetTop, behavior: "smooth" });
+    } else {
+        window.scrollTo({ top: parent.offsetTop, behavior: "smooth" });
+    }
+}
+
+[
+    { button: addCard, form: newCard },
+    { button: addCharge, form: newCharge },
+    { button: addProCharge, form: newProCharge },
+].forEach(({ button, form }) => {
+    button.addEventListener("click", () => toggleCharges(form, button, true));
 });
 
-addCharge.addEventListener('click',()=>{
-    newCharge.classList.remove("hidden");
-    newCharge.classList.add("flex");
-    addCharge.classList.add("hidden");
+[
+    { button: canCard, form: newCard, trigger: addCard },
+    { button: canCharge, form: newCharge, trigger: addCharge },
+    { button: canProCharge, form: newProCharge, trigger: addProCharge },
+].forEach(({ button, form, trigger }) => {
+    button.addEventListener("click", () => toggleCharges(form, trigger, false));
 });
 
-addProCharge.addEventListener('click',()=>{
-    newProCharge.classList.remove("hidden");
-    newProCharge.classList.add("flex");
-    addProCharge.classList.add("hidden");
-});
-
-canCharge.addEventListener('click',()=>{
-    newCharge.classList.remove("flex");
-    newCharge.classList.add("hidden");
-    addCharge.classList.remove("hidden");
-});
-
-canCard.addEventListener('click',()=>{
-    newCard.classList.remove("flex");
-    newCard.classList.add("hidden");
-    addCard.classList.remove("hidden");
-});
-
-canProCharge.addEventListener('click',()=>{
-    newProCharge.classList.remove("flex");
-    newProCharge.classList.add("hidden");
-    addProCharge.classList.remove("hidden");
-});
+function renderPermissions(role) {
+    permissionsDiv.innerHTML = "";
+    const permissionDiv = document.getElementById("permission-div");
+    if (role === "Add Co-Admin Details" || role === "Edit Co-Admin Details") {
+        const allowedPermissions = permissions.filter(permission => permission.allow === "coadmin");
+        if (permissionDiv.classList.contains("hidden")) {
+            permissionDiv.classList.remove("hidden");
+            permissionDiv.classList.add("flex");
+        }
+        allowedPermissions.forEach(permission => {
+            const label = document.createElement("label");
+            label.classList.add("flex", "items-center", "space-x-2");
+            label.style.width = "200px";
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.name = "permissions";
+            checkbox.value = permission.value;
+            checkbox.classList.add("w-5", "h-5");
+            const span = document.createElement("span");
+            span.textContent = permission.label;
+            label.appendChild(checkbox);
+            label.appendChild(span);
+            permissionsDiv.appendChild(label);
+        });
+    }
+    else if (role === "Add Member Details" || role === "Edit Member Details") {
+        const allowedPermissions = permissions.filter(permission => permission.allow === "member");
+        if (permissionDiv.classList.contains("hidden")) {
+            permissionDiv.classList.remove("hidden");
+            permissionDiv.classList.add("flex");
+        }
+        allowedPermissions.forEach(permission => {
+            const label = document.createElement("label");
+            label.classList.add("flex", "items-center", "space-x-2");
+            label.style.width = "200px";
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.name = "permissions";
+            checkbox.value = permission.value;
+            checkbox.classList.add("w-5", "h-5");
+            const span = document.createElement("span");
+            span.textContent = permission.label;
+            label.appendChild(checkbox);
+            label.appendChild(span);
+            permissionsDiv.appendChild(label);
+        });
+    } else if (role === "Edit Admin Details") {
+        if (permissionDiv.classList.contains("flex")) {
+            permissionDiv.classList.remove("flex");
+            permissionDiv.classList.add("hidden");
+        }
+    }
+}
