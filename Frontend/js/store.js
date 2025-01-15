@@ -13,6 +13,20 @@ const canCard = document.getElementById("cancel-new-card");
 const canProCharge = document.getElementById("cancel-new-product-charge");
 const userRole = document.getElementById("user");
 const permissionsDiv = document.getElementById("permissions");
+const addBuyXGetY = document.getElementById("add-buyXgetY");
+const buyXgetYForm = document.getElementById("buyXgetY-form");
+const canBuyXGetY = document.getElementById("cancel-buyXgetY");
+const addFlatDiscount = document.getElementById("add-flatDiscount");
+const flatDiscountForm = document.getElementById("flatDiscount-form");
+const canFlatDiscount = document.getElementById("cancel-flatDiscount");
+const onSelect = document.getElementById('on');
+const productDiv = document.getElementById('product-div');
+const categoryDiv = document.getElementById('category-div');
+const removeDiv = document.getElementById('remove-div');
+const removedProductDiv = document.getElementById('removed-product-div');
+const removeInput = document.getElementById('remove');
+const removeProductButton = document.getElementById('remove-product');
+const removedProductList = document.getElementById('removed-product');
 
 const permissions = [
     { value: "manage-member", label: "Manage Member", allow: "coadmin" },
@@ -204,27 +218,27 @@ document.addEventListener("DOMContentLoaded", function () {
     displayStoreDetails('member', memberData);
     document.querySelector(".edit-admin").addEventListener("click", () => {
         toggleVisibility(form, true, "admin", "edit");
-            window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
     document.querySelectorAll(".edit-store").forEach(editButton => {
         editButton.addEventListener("click", () => {
             toggleVisibility(storeForm, true, "store", "edit");
-                window.scrollTo({ top: 0, behavior: "smooth" });
+            window.scrollTo({ top: 0, behavior: "smooth" });
         });
     });
 
     document.querySelectorAll(".edit-coadmin").forEach(editButton => {
         editButton.addEventListener("click", () => {
             toggleVisibility(form, true, "coadmin", "edit");
-                window.scrollTo({ top: 0, behavior: "smooth" });
+            window.scrollTo({ top: 0, behavior: "smooth" });
         });
     });
 
     document.querySelectorAll(".edit-member").forEach(editButton => {
         editButton.addEventListener("click", () => {
             toggleVisibility(form, true, "member", "edit");
-                window.scrollTo({ top: 0, behavior: "smooth" });
+            window.scrollTo({ top: 0, behavior: "smooth" });
         });
     });
 });
@@ -276,17 +290,17 @@ function toggleVisibility(element, show, info, type) {
 
 document.getElementById("add-store").addEventListener("click", () => {
     toggleVisibility(storeForm, true, "store", "new");
-        window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 addCoadmin.addEventListener("click", () => {
     toggleVisibility(form, true, "coadmin", "new");
-        window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 addMember.addEventListener("click", () => {
     toggleVisibility(form, true, "member", "new");
-        window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 document.getElementById("cancel-store-form").addEventListener("click", () => {
@@ -328,11 +342,14 @@ function toggleCharges(form, btn, show) {
     form.classList.toggle("hidden", !show);
     form.classList.toggle("flex", show);
     btn.classList.toggle("hidden", show);
-    const parent = btn.parentElement.parentElement.parentElement;
+    const charge = btn.parentElement.parentElement.parentElement;
+    const discount = btn.parentElement.parentElement;
     if (show) {
         window.scrollTo({ top: form.offsetTop, behavior: "smooth" });
+    } else if (form === canCard || form === canCharge || form === canProCharge) {
+        window.scrollTo({ top: charge.offsetTop, behavior: "smooth" });
     } else {
-        window.scrollTo({ top: parent.offsetTop, behavior: "smooth" });
+        window.scrollTo({ top: discount.offsetTop, behavior: "smooth" });
     }
 }
 
@@ -340,6 +357,8 @@ function toggleCharges(form, btn, show) {
     { button: addCard, form: newCard },
     { button: addCharge, form: newCharge },
     { button: addProCharge, form: newProCharge },
+    { button: addBuyXGetY, form: buyXgetYForm },
+    { button: addFlatDiscount, form: flatDiscountForm },
 ].forEach(({ button, form }) => {
     button.addEventListener("click", () => toggleCharges(form, button, true));
 });
@@ -348,6 +367,8 @@ function toggleCharges(form, btn, show) {
     { button: canCard, form: newCard, trigger: addCard },
     { button: canCharge, form: newCharge, trigger: addCharge },
     { button: canProCharge, form: newProCharge, trigger: addProCharge },
+    { button: canBuyXGetY, form: buyXgetYForm, trigger: addBuyXGetY },
+    { button: canFlatDiscount, form: flatDiscountForm, trigger: addFlatDiscount },
 ].forEach(({ button, form, trigger }) => {
     button.addEventListener("click", () => toggleCharges(form, trigger, false));
 });
@@ -405,3 +426,52 @@ function renderPermissions(role) {
         }
     }
 }
+
+onSelect.addEventListener('change', function () {
+    if (this.value === 'category') {
+        productDiv.classList.remove('flex');
+        productDiv.classList.add('hidden');
+        categoryDiv.classList.remove('hidden');
+        categoryDiv.classList.add('flex');
+        removeDiv.classList.remove('hidden');
+        removeDiv.classList.add('flex');
+        removedProductDiv.classList.remove('hidden');
+        removedProductDiv.classList.add('flex');
+    } else {
+        productDiv.classList.remove('hidden');
+        productDiv.classList.add('flex');
+        categoryDiv.classList.remove('flex');
+        categoryDiv.classList.add('hidden');
+        removeDiv.classList.remove('flex');
+        removeDiv.classList.add('hidden');
+        removedProductDiv.classList.remove('flex');
+        removedProductDiv.classList.add('hidden');
+    }
+});
+
+function addProduct() {
+    const value = removeInput.value.trim();
+    if (value) {
+        const li = document.createElement('li');
+        li.classList.add('border', 'py-2', 'px-5', 'text-xl', 'relative', 'rounded');
+        li.textContent = value;
+        const removeIcon = document.createElement('i');
+        removeIcon.classList.add('fa-solid', 'fa-times', 'text-sm', 'absolute', 'top-1', 'right-1', 'cursor-pointer', 'text-red-500');
+        removeIcon.title = 'Remove item';
+        removeIcon.addEventListener('click', function () {
+            li.remove();
+        });
+        li.appendChild(removeIcon);
+        removedProductList.appendChild(li);
+        removeInput.value = '';
+    }
+}
+
+removeProductButton.addEventListener('click', addProduct);
+removeInput.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        addProduct();
+    }
+});
+
