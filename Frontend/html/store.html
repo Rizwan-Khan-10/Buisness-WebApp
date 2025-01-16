@@ -99,7 +99,7 @@
                 </div>
 
                 <div class="flex-1">
-                    <h2 class="text-3xl font-bold text-center mb-6 change-text">Admin</h2>
+                    <h2 id="admin-heading" class="text-3xl font-bold text-center mb-6 change-text">Admin</h2>
                     <div id="admin-details" class="space-y-8 cursor-pointer">
                     </div>
                 </div>
@@ -107,7 +107,7 @@
 
             <div class="flex flex-col md:flex-row gap-8">
                 <div class="flex-1">
-                    <h2 class="text-3xl font-bold text-center mb-6 change-text">Co-Admins</h2>
+                    <h2 id="coadmin-heading" class="text-3xl font-bold text-center mb-6 change-text">Co-Admins</h2>
                     <div id="coadmin-details" class="space-y-8 cursor-pointer">
                     </div>
                     <div class="flex justify-center">
@@ -118,7 +118,7 @@
                 </div>
 
                 <div class="flex-1">
-                    <h2 class="text-3xl font-bold text-center mb-6 change-text">Members</h2>
+                    <h2 id="member-heading" class="text-3xl font-bold text-center mb-6 change-text">Members</h2>
                     <div id="member-details" class="space-y-8 cursor-pointer">
                     </div>
                     <div class="flex justify-center">
@@ -132,9 +132,8 @@
     </main>
     <section id="forms" class="flex justify-center items-center">
         <div id="store-form" class="mt-28 hidden items-center justify-center p-4">
-            <form class="border border-black shadow-md rounded-lg p-6 w-full max-w-lg space-y-4" method="post">
+            <form class="border border-black shadow-md rounded-md p-6 w-full max-w-lg space-y-4" method="post">
                 <h2 class="text-2xl font-semibold change-text text-center mb-4" id="store">Store Details</h2>
-
                 <div class="flex flex-col">
                     <label for="store-name" class="text-sm font-medium change-text mb-1">
                         Store Name <span class="text-red-500">*</span>
@@ -169,7 +168,7 @@
                     <input type="tel" id="store-contact" placeholder="Enter contact number"
                         class="border change-border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input" />
                 </div>
-                <div class="flex flex-col justify-evenly items-center gap-5 sm:flex-row">
+                <div class="flex justify-around gap-5">
                     <button type="submit"
                         class="w-28 bg-green-500 text-white font-medium py-2 px-4 rounded-md hover:bg-green-600">Submit</button>
                     <button type="button" id="cancel-store-form"
@@ -177,8 +176,68 @@
                 </div>
             </form>
         </div>
+        <div id="edit-store-form" class="mt-28 hidden items-center justify-center p-4">
+            <form class="border border-black shadow-md rounded-md p-6 w-full max-w-lg space-y-4" method="post">
+                <h2 class="text-2xl font-semibold change-text text-center mb-4" id="edit-store">Edit Store Details</h2>
+                <div class="flex justify-between items-start">
+                    <div class="w-[95%] flex flex-col">
+                        <label for="edit-store-name" class="text-sm font-medium change-text mb-1">
+                            Store Name <span class="text-red-500">*</span></label>
+                        <input type="text" id="edit-store-name" placeholder="Enter store name"
+                            class="border change-border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                            readonly />
+                    </div>
+                    <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div class="w-[95%] flex flex-col">
+                        <label for="edit-store-address" class="text-sm font-medium change-text mb-1">
+                            Address <span class="text-red-500">*</span></label>
+                        <textarea id="edit-store-address" placeholder="Enter store address"
+                            class="border change-border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                            rows="3" readonly></textarea>
+                    </div>
+                    <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div class="w-[95%] flex flex-col">
+                        <label for="edit-store-logo" class="text-sm font-medium change-text mb-1">Logo</label>
+                        <input type="file" id="edit-store-logo" name="edit-store-logo" accept="image/*"
+                            class="block w-full border change-border rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                            disabled>
+                    </div>
+                    <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div class="w-[95%] flex flex-col">
+                        <label for="edit-store-email" class="text-sm font-medium change-text mb-1">Email</label>
+                        <input type="email" id="edit-store-email" placeholder="Enter store email"
+                            class="border change-border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                            readonly />
+                    </div>
+                    <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div class="w-[95%] flex flex-col">
+                        <label for="edit-store-contact" class="text-sm font-medium change-text mb-1">Contact</label>
+                        <input type="tel" id="edit-store-contact" placeholder="Enter contact number"
+                            class="border change-border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                            readonly />
+                    </div>
+                    <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                </div>
+                <div class="flex flex-wrap justify-around gap-5">
+                    <button type="submit"
+                        class="w-28 bg-green-500 text-white font-medium py-2 px-4 rounded-md hover:bg-green-600">Submit</button>
+                    <button type="button"
+                        class="w-28 bg-red-500 text-white font-medium py-2 px-4 rounded-md hover:bg-red-600">Remove</button>
+                    <button type="button" id="cancel-edit-store-form"
+                        class="w-28 bg-cyan-500 text-white font-medium py-2 px-4 rounded-md hover:bg-cyan-600">Cancel</button>
+                </div>
+            </form>
+        </div>
         <div id="user-form" class="max-w-4xl mx-auto mt-28 hidden items-center justify-center p-4">
-            <form class="border border-black shadow-md rounded-lg p-6 w-full space-y-4" method="post">
+            <form class="border border-black shadow-md rounded-md p-6 w-full space-y-4" method="post">
                 <h2 id="user" class="text-2xl font-semibold change-text text-center mb-4">Add User Details</h2>
                 <div class="flex flex-col sm:flex-row sm:space-x-4">
                     <div class="flex flex-col w-full mb-4 sm:mb-0">
@@ -227,7 +286,7 @@
                         <label for="gender" class="text-sm font-medium change-text mb-1">Gender <span
                                 class="text-red-500">*</span></label>
                         <select id="gender"
-                            class="border cursor-pointer change-border rounded-lg shadow-sm px-1 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                            class="border cursor-pointer change-border rounded-md shadow-sm px-1 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 change-input"
                             required>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -256,13 +315,13 @@
                             class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
                             required />
                     </div>
-                    <div class="flex flex-col w-full justify-evenly items-end sm:flex-row">
+                    <div class="flex justify-around gap-5 items-end">
                         <button type="button" id="get-otp"
-                            class="w-full sm:w-[40%] bg-cyan-500 text-white font-medium py-2 px-4 h-10 rounded-md hover:bg-cyan-600">
+                            class="w-32 bg-cyan-500 text-white font-medium py-2 px-4 h-10 rounded-md hover:bg-cyan-600">
                             Get OTP
                         </button>
                         <button type="button" id="verify-otp"
-                            class="w-full sm:w-[40%] bg-green-500 text-white font-medium mt-4 sm:mt-0 py-2 px-4 h-10 rounded-md hover:bg-green-600">
+                            class="w-32 bg-green-500 text-white font-medium mt-4 sm:mt-0 py-2 px-4 h-10 rounded-md hover:bg-green-600">
                             Verify OTP
                         </button>
                     </div>
@@ -287,13 +346,173 @@
                     <h3 class="text-lg font-medium mb-4 change-text">Select to Allow:</h3>
                     <div id="permissions" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
                 </div>
-                <div class="flex flex-col justify-center sm:flex-row sm:justify-around gap-3">
-                    <button type="submit" id="submit-form"
-                        class="bg-green-500 w-full sm:w-[150px] text-white font-medium py-2 px-4 rounded-md hover:bg-green-600">
+                <div class="flex justify-around gap-5">
+                    <button type="submit"
+                        class="bg-green-500 w-28 text-white font-medium py-2 px-4 rounded-md hover:bg-green-600">
                         Submit
                     </button>
                     <button type="button" id="cancel-form"
-                        class="bg-blue-500 w-full sm:w-[150px] text-white font-medium py-2 px-4 rounded-md hover:bg-blue-600">
+                        class="bg-cyan-500 w-28 text-white font-medium py-2 px-4 rounded-md hover:bg-cyan-600">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div id="edit-user-form" class="max-w-4xl mx-auto mt-28 hidden items-center justify-center p-4">
+            <form class="border border-black shadow-md rounded-md p-6 w-full space-y-4" method="post">
+                <h2 id="edit-user" class="text-2xl font-semibold change-text text-center mb-4">Edit User Details</h2>
+                <div class="flex flex-col sm:flex-row sm:space-x-4">
+                    <div class="flex w-full mb-4 sm:mb-0">
+                        <div class="w-[95%] flex flex-col">
+                            <label for="edit-first-name" class="text-sm font-medium change-text mb-1">First Name <span
+                                    class="text-red-500">*</span></label>
+                            <input type="text" id="edit-first-name" placeholder="Enter first name" autocomplete="name"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                readonly required />
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                    <div class="flex w-full mb-4 sm:mb-0">
+                        <div class="w-[95%] flex flex-col">
+                            <label for="edit-middle-name" class="text-sm font-medium change-text mb-1">Middle
+                                Name</label>
+                            <input type="text" id="edit-middle-name" placeholder="Enter middle name"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                readonly />
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                    <div class="flex w-full sm:mb-0">
+                        <div class="w-[95%] flex flex-col">
+                            <label for="edit-last-name" class="text-sm font-medium change-text mb-1">Last Name <span
+                                    class="text-red-500">*</span></label>
+                            <input type="text" id="edit-last-name" placeholder="Enter last name"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                readonly required />
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                </div>
+                <div class="flex mb-4">
+                    <div class="w-[95%] flex flex-col">
+                        <label for="edit-address" class="text-sm font-medium change-text mb-1">Address <span
+                                class="text-red-500">*</span></label>
+                        <textarea id="edit-address" placeholder="Enter address" autocomplete="address"
+                            class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                            rows="3" readonly required></textarea>
+                    </div>
+                    <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:space-x-4 mb-4">
+                    <div class="flex w-full mb-4 sm:mb-0">
+                        <div class="w-[95%] flex flex-col">
+                            <label for="edit-user-image" class="text-sm font-medium change-text mb-1">Image</label>
+                            <input type="file" id="edit-user-image" name="user-image" accept="image/*"
+                                class="block w-full border change-border rounded-md py-1 h-10 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                                disabled />
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                    <div class="flex w-full">
+                        <div class="w-[95%] flex flex-col">
+                            <label for="edit-contact" class="text-sm font-medium change-text mb-1">Contact <span
+                                    class="text-red-500">*</span></label>
+                            <input type="tel" id="edit-contact" placeholder="Enter contact number"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                readonly required />
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:space-x-4 mb-4">
+                    <div class="flex w-full mb-4 sm:w-1/5 sm:mb-0">
+                        <div class="w-[95%] flex flex-col">
+                            <label for="edit-gender" class="text-sm font-medium change-text mb-1">Gender <span
+                                    class="text-red-500">*</span></label>
+                            <select id="edit-gender"
+                                class="border cursor-pointer change-border rounded-md shadow-sm px-1 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 change-input"
+                                disabled required>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                    <div class="flex w-full mb-4 sm:w-1/5 sm:mb-0">
+                        <div class="w-[95%] flex flex-col">
+                            <label for="edit-dob" class="text-sm font-medium change-text mb-1">Date of Birth <span
+                                    class="text-red-500">*</span></label>
+                            <input type="date" id="edit-dob"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-cyan-500 change-input"
+                                readonly required />
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                    <div class="flex w-full mb-4 sm:w-3/5 sm:mb-0">
+                        <div class="w-[95%] flex flex-col">
+                            <label for="edit-email" class="text-sm font-medium change-text mb-1">Email <span
+                                    class="text-red-500">*</span></label>
+                            <input type="email" id="edit-email" placeholder="Enter email" autocomplete="email"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                readonly required />
+                        </div>
+                        <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
+                    </div>
+                </div>
+                <div class="hidden">
+                    <div class="flex flex-col sm:flex-row sm:space-x-4 mb-4">
+                        <div class="flex flex-col w-full mb-4 sm:mb-0">
+                            <label for="new-otp" class="text-sm font-medium change-text mb-1">OTP <span
+                                    class="text-red-500">*</span></label>
+                            <input type="text" id="new-otp" placeholder="Enter OTP"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                required />
+                        </div>
+                        <div class="flex justify-around gap-5 items-end">
+                            <button type="button" id="new-get-otp"
+                                class="w-32 bg-cyan-500 text-white font-medium py-2 px-4 h-10 rounded-md hover:bg-cyan-600">
+                                Get OTP
+                            </button>
+                            <button type="button" id="new-verify-otp"
+                                class="w-32 bg-green-500 text-white font-medium mt-4 sm:mt-0 py-2 px-4 h-10 rounded-md hover:bg-green-600">
+                                Verify OTP
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row sm:space-x-4 mb-4">
+                        <div class="flex flex-col w-full mb-4 sm:mb-0">
+                            <label for="new-password" class="text-sm font-medium change-text mb-1">Password <span
+                                    class="text-red-500">*</span></label>
+                            <input type="password" id="new-password" placeholder="Enter password"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                required />
+                        </div>
+                        <div class="flex flex-col w-full">
+                            <label for="new-confirm-password" class="text-sm font-medium change-text mb-1">Confirm
+                                Password
+                                <span class="text-red-500">*</span></label>
+                            <input type="password" id="new-confirm-password" placeholder="Confirm password"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                required />
+                        </div>
+                    </div>
+                </div>
+                <div id="edit-permission-div" class="flex flex-col mb-4">
+                    <h3 class="text-lg font-medium mb-4 change-text">Select to Allow:</h3>
+                    <div id="edit-permissions" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    </div>
+                </div>
+                <div class="flex justify-around gap-5">
+                    <button type="submit"
+                        class="bg-green-500 w-28 text-white font-medium py-2 px-4 rounded-md hover:bg-green-600">
+                        Submit
+                    </button>
+                    <button type="button"
+                        class="bg-red-500 w-28 text-white font-medium py-2 px-4 rounded-md hover:bg-red-600">
+                        Remove
+                    </button>
+                    <button type="button" id="cancel-edit-form"
+                        class="bg-cyan-500 w-28 text-white font-medium py-2 px-4 rounded-md hover:bg-cyan-600">
                         Cancel
                     </button>
                 </div>
@@ -307,7 +526,7 @@
                 <div class="w-full max-w-lg">
                     <div id="display-charges" class="flex flex-col">
                         <h2 class="change-text text-2xl md:text-3xl font-bold text-center mb-4">Bill Charges</h2>
-                        <ul class="mb-4 border rounded-lg p-4 change-border">
+                        <ul class="mb-4 border rounded-md p-4 change-border">
                             <li class="flex justify-between items-center py-1 border-y change-border">
                                 <span class="change-text">Service Tax</span>
                                 <div class="flex items-center gap-2">
@@ -333,12 +552,12 @@
                         <h2 class="mb-2 text-center sm:text-xl change-text">These charges will be applied to the total
                             bill amount if selected.</h2>
                         <button id="add-charge" type="button"
-                            class="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">
+                            class="px-4 py-2 w-48 mx-auto bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">
                             Add Bill Charge
                         </button>
                     </div>
                     <form id="new-charge"
-                        class="hidden flex-col gap-4 mt-6 border rounded-lg p-4 change-border transition-all duration-300 ease-in-out"
+                        class="hidden flex-col gap-4 mt-6 border rounded-md p-4 change-border transition-all duration-300 ease-in-out"
                         method="post">
                         <div class="flex flex-col">
                             <label for="charge-name" class="change-text text-sm md:text-base mb-1">Charge Name <span
@@ -352,7 +571,7 @@
                                 <label for="charge-type" class="change-text text-sm md:text-base mb-1">Charge
                                     Type</label>
                                 <select id="charge-type" name="charge_type"
-                                    class="border cursor-pointer change-border rounded-lg shadow-sm px-1 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                                    class="border cursor-pointer change-border rounded-md shadow-sm px-1 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 change-input">
                                     <option value="price">₹</option>
                                     <option value="percent">%</option>
                                 </select>
@@ -365,13 +584,13 @@
                                     placeholder="Enter Amount" />
                             </div>
                         </div>
-                        <div class="flex flex-col sm:flex-row justify-center sm:justify-around gap-4 mt-4">
+                        <div class="flex justify-around gap-4 mt-4">
                             <button type="submit"
-                                class="w-full sm:w-32 px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base rounded">
-                                Add Charge
+                                class="w-32 px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base rounded">
+                                Add Bill Charge
                             </button>
                             <button id="cancel-new-charge" type="button"
-                                class="w-full sm:w-32 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">
+                                class="w-32 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">
                                 Cancel
                             </button>
                         </div>
@@ -382,7 +601,7 @@
                 <div class="w-full max-w-lg">
                     <div id="display-cards" class="flex flex-col">
                         <h2 class="change-text text-2xl md:text-3xl font-bold text-center mb-4">Card Charges</h2>
-                        <ul class="mb-4 border rounded-lg p-4 change-border">
+                        <ul class="mb-4 border rounded-md p-4 change-border">
                             <li class="flex justify-between items-center py-1 border-y change-border">
                                 <span class="change-text">Platinum Card</span>
                                 <div class="flex items-center gap-2">
@@ -408,7 +627,7 @@
                         <h2 class="mb-2 text-center sm:text-xl change-text">These charges will be applied based on the
                             type of card used for the payment.</h2>
                         <button id="add-card" type="button"
-                            class="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded-lg">
+                            class="px-4 py-2 w-48 mx-auto bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">
                             Add Card Charge
                         </button>
                     </div>
@@ -428,7 +647,7 @@
                                 <label for="card-charge-type" class="change-text text-sm md:text-base mb-1">Charge
                                     Type</label>
                                 <select id="card-charge-type" name="charge_type"
-                                    class="border cursor-pointer change-border rounded-lg shadow-sm px-1 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                                    class="border cursor-pointer change-border rounded-md shadow-sm px-1 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 change-input">
                                     <option value="price">₹</option>
                                     <option value="percent">%</option>
                                 </select>
@@ -442,13 +661,13 @@
                                     placeholder="Enter Amount" />
                             </div>
                         </div>
-                        <div class="flex flex-col sm:flex-row justify-center sm:justify-around gap-4 mt-4">
+                        <div class="flex justify-around gap-4 mt-4">
                             <button type="submit"
-                                class="w-full sm:w-32 px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base rounded">
-                                Add Card
+                                class="w-36 px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base rounded">
+                                Add Card Charge
                             </button>
                             <button id="cancel-new-card" type="button"
-                                class="w-full sm:w-32 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">
+                                class="w-32 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">
                                 Cancel
                             </button>
                         </div>
@@ -459,7 +678,7 @@
                 <div class="w-full max-w-lg">
                     <div id="display-product-charge" class="flex flex-col">
                         <h2 class="change-text text-2xl md:text-3xl font-bold text-center mb-4">Product Charges</h2>
-                        <ul class="mb-4 border rounded-lg p-4 change-border">
+                        <ul class="mb-4 border rounded-md p-4 change-border">
                             <li class="flex justify-between items-center py-1 border-y change-border">
                                 <span class="change-text">Packaging Charge</span>
                                 <div class="flex items-center gap-2">
@@ -478,12 +697,12 @@
                         <h2 class="mb-2 text-center sm:text-xl change-text">These charges will be applied to the product
                             if selected.</h2>
                         <button id="add-product-charge" type="button"
-                            class="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">
+                            class="px-4 py-2 w-48 mx-auto bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">
                             Add Product Charge
                         </button>
                     </div>
                     <form id="new-product-charge"
-                        class="hidden flex-col gap-4 mt-6 border rounded-lg p-4 change-border transition-all duration-300 ease-in-out">
+                        class="hidden flex-col gap-4 mt-6 border rounded-md p-4 change-border transition-all duration-300 ease-in-out">
                         <div class="flex flex-col">
                             <label for="product-charge-name" class="change-text text-sm md:text-base mb-1">
                                 Charge Name <span class="text-red-600 text-xl">*</span>
@@ -497,7 +716,7 @@
                                 <label for="product-charge-type" class="change-text text-sm md:text-base mb-1">Charge
                                     Type</label>
                                 <select id="product-charge-type" name="charge_type"
-                                    class="border cursor-pointer change-border rounded-lg shadow-sm px-1 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 change-input">
+                                    class="border cursor-pointer change-border rounded-md shadow-sm px-1 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 change-input">
                                     <option value="price">₹</option>
                                     <option value="percent">%</option>
                                 </select>
@@ -511,13 +730,13 @@
                                     placeholder="Enter Amount" />
                             </div>
                         </div>
-                        <div class="flex flex-col sm:flex-row justify-center sm:justify-around gap-4 mt-4">
+                        <div class="flex justify-around gap-4 mt-4">
                             <button type="submit"
-                                class="w-full sm:w-32 px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base rounded">
-                                Add Charge
+                                class="w-40 px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base rounded">
+                                Add Product Charge
                             </button>
                             <button id="cancel-new-product-charge" type="button"
-                                class="w-full sm:w-32 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">
+                                class="w-32 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">
                                 Cancel
                             </button>
                         </div>
@@ -551,17 +770,12 @@
                             <td class="px-4 py-2 border change-border">₹50 off on Product X</td>
                         </tr>
                         <tr>
-                            <td class="px-4 py-2 border change-border">Percentage Discount</td>
-                            <td class="px-4 py-2 border change-border">Product, Category</td>
-                            <td class="px-4 py-2 border change-border">20% off on Product Y</td>
-                        </tr>
-                        <tr>
                             <td class="px-4 py-2 border change-border">Cashback Discount</td>
                             <td class="px-4 py-2 border change-border">Bill</td>
                             <td class="px-4 py-2 border change-border">Get ₹100 cashback on ₹1000+</td>
                         </tr>
                         <tr>
-                            <td class="px-4 py-2 border change-border">Free Shipping Discount</td>
+                            <td class="px-4 py-2 border change-border">Charges Discount</td>
                             <td class="px-4 py-2 border change-border">Shipping Charges</td>
                             <td class="px-4 py-2 border change-border">Free Shipping on ₹500+</td>
                         </tr>
@@ -574,11 +788,12 @@
                 </table>
             </div>
         </div>
-        <div class="flex flex-wrap justify-center gap-8">
+        <div class="flex flex-wrap justify-center gap-7 mb-3">
             <div class="flex flex-col w-full md:w-[48%] items-center gap-5">
                 <h2 class="change-text text-2xl md:text-3xl font-bold text-center">Buy X Get Y Discount</h2>
+                <h3 id="buyXgetY-heading" class="change-text font-bold text-center text-lg">No Discount Added</h3>
                 <div class="w-full overflow-x-auto">
-                    <table id="buyXgetY" class="w-full table-auto border-collapse border change-border">
+                    <table id="buyXgetY" class="w-full hidden table-auto border-collapse border change-border">
                         <thead class="bg-gray-800 text-white">
                             <tr>
                                 <td class="px-4 py-2 border change-border">Buy</td>
@@ -594,23 +809,23 @@
                     </table>
                 </div>
                 <button type="button" id="add-buyXgetY"
-                    class="w-full px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">Add
+                    class="w-40 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">Add
                     Discount</button>
                 <form id="buyXgetY-form"
-                    class="hidden flex-col gap-4 mt-6 border rounded-lg p-4 w-full change-border transition-all duration-300 ease-in-out">
+                    class="hidden flex-col gap-4 mt-6 border rounded-md p-4 w-full change-border transition-all duration-300 ease-in-out">
                     <div class="flex flex-col sm:flex-row w-full gap-5">
                         <div class="w-full sm:w-[58%] flex flex-col">
                             <label for="purchased-product" class="change-text text-sm md:text-base mb-1">Purchased
                                 Product <span class="text-red-600 text-xl">*</span></label>
                             <input type="text" id="purchased-product" name="purchased_product"
-                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                class="w-full px-4 py-2 border change-border rounded-md change-input focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 placeholder="Enter Name" />
                         </div>
-                        <div class="w-full sm:w-2/5 flex flex-col">
-                            <label for="purchased-quantity" class="change-text text-sm md:text-base mb-1">Purchased
-                                Quantity <span class="text-red-600 text-xl">*</span></label>
+                        <div class="w-full sm:w-[38%] flex flex-col">
+                            <label for="purchased-quantity" class="change-text text-sm md:text-base mb-1">Quantity <span
+                                    class="text-red-600 text-xl">*</span></label>
                             <input type="number" id="purchased-quantity" name="purchased_quantity"
-                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                class="w-full px-4 py-2 border change-border rounded-md change-input focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 placeholder="Enter Quantity" />
                         </div>
                     </div>
@@ -619,15 +834,15 @@
                             <label for="free-product" class="change-text text-sm md:text-base mb-1">Free
                                 Product <span class="text-red-600 text-xl">*</span></label>
                             <input type="text" id="free-product" name="free_product"
-                                class="w-full px-4 py-2 border change-border rounded-lg change-input focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                class="w-full px-4 py-2 border change-border rounded-md change-input focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 placeholder="Enter free product" />
                         </div>
-                        <div class="w-full sm:w-2/5 flex flex-col">
-                            <label for="free-quantity" class="change-text text-sm md:text-base mb-1">Free
-                                Quantity <span class="text-red-600 text-xl">*</span></label>
+                        <div class="w-full sm:w-[38%] flex flex-col">
+                            <label for="free-quantity" class="change-text text-sm md:text-base mb-1">Quantity <span
+                                    class="text-red-600 text-xl">*</span></label>
                             <input type="number" id="free-quantity" name="free_quantity"
-                                class="w-full px-4 py-2 border change-border rounded-lg change-input focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                placeholder="Enter free quantity" />
+                                class="w-full px-4 py-2 border change-border rounded-md change-input focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="Enter Quantity" />
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row w-full gap-5">
@@ -635,22 +850,22 @@
                             <label for="start-date" class="change-text text-sm md:text-base mb-1">Start
                                 Date <span class="text-red-600 text-xl">*</span></label>
                             <input type="date" id="start-date" name="start_date"
-                                class="w-full px-4 py-2 border change-border rounded-lg change-input focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                class="w-full px-4 py-2 border change-border rounded-md change-input focus:outline-none focus:ring-2 focus:ring-blue-500" />
                         </div>
                         <div class="w-full sm:w-[48%] flex flex-col">
                             <label for="end-date" class="change-text text-sm md:text-base mb-1">End
                                 Date <span class="text-red-600 text-xl">*</span></label>
                             <input type="date" id="end-date" name="end_date"
-                                class="w-full px-4 py-2 border change-border rounded-lg change-input focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                class="w-full px-4 py-2 border change-border rounded-md change-input focus:outline-none focus:ring-2 focus:ring-blue-500" />
                         </div>
                     </div>
-                    <div class="flex flex-col sm:flex-row justify-center sm:justify-around mt-4 gap-4">
+                    <div class="flex justify-around mt-4 gap-4">
                         <button type="submit"
-                            class="w-full sm:w-32 px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base rounded">
+                            class="w-32 px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base rounded">
                             Create
                         </button>
                         <button id="cancel-buyXgetY" type="button"
-                            class="w-full sm:w-32 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">
+                            class="w-32 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">
                             Cancel
                         </button>
                     </div>
@@ -658,14 +873,14 @@
             </div>
             <div class="flex flex-col w-full md:w-[48%] items-center gap-5">
                 <h2 class="change-text text-2xl md:text-3xl font-bold text-center">Flat Discount</h2>
+                <h3 id="flatDiscount-heading" class="change-text font-bold text-center text-lg">No Discount Added</h3>
                 <div class="w-full overflow-x-auto">
-                    <table id="flatDiscount" class="w-full table-auto border-collapse border change-border">
+                    <table id="flatDiscount" class="w-full hidden table-auto border-collapse border change-border">
                         <thead class="bg-gray-800 text-white">
                             <tr>
                                 <td class="px-4 py-2 border change-border">On</td>
                                 <td class="px-4 py-2 border change-border">Name</td>
-                                <td class="px-4 py-2 border change-border">Type</td>
-                                <td class="px-4 py-2 border change-border">Amount</td>
+                                <td class="px-4 py-2 border change-border">Discount</td>
                                 <td class="px-4 py-2 border change-border">Start</td>
                                 <td class="px-4 py-2 border change-border">End</td>
                                 <td class="px-4 py-2 border change-border">Edit</td>
@@ -675,10 +890,10 @@
                     </table>
                 </div>
                 <button type="button" id="add-flatDiscount"
-                    class="w-full px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">Add
+                    class="w-40 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">Add
                     Discount</button>
                 <form id="flatDiscount-form"
-                    class="hidden flex-col gap-4 mt-6 border rounded-lg p-4 w-full change-border transition-all duration-300 ease-in-out">
+                    class="hidden flex-col gap-4 mt-6 border rounded-md p-4 w-full change-border transition-all duration-300 ease-in-out">
                     <div class="flex flex-col sm:flex-row w-full gap-5">
                         <div class="w-full sm:w-[48%] flex flex-col">
                             <label for="on" class="change-text text-sm md:text-base mb-1">Discount On <span
@@ -700,10 +915,7 @@
                             <label for="category" class="change-text text-sm md:text-base mb-1">Categories <span
                                     class="text-red-600 text-xl">*</span></label>
                             <select id="category" name="category"
-                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input">
-                                <option value="product">Product</option>
-                                <option value="category">Category</option>
-                            </select>
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"></select>
                         </div>
                     </div>
                     <div id="remove-div" class="hidden flex-col sm:flex-row w-full items-end gap-5">
@@ -724,44 +936,317 @@
                         <ul id="removed-product" class="w-full flex flex-wrap gap-2 change-text"></ul>
                     </div>
                     <div class="flex flex-col sm:flex-row w-full gap-5">
-                        <div class="w-full sm:w-[20%] flex flex-col">
+                        <div class="w-full sm:w-[28%] flex flex-col">
                             <label for="type" class="change-text text-sm md:text-base mb-1">Type <span
                                     class="text-red-600 text-xl">*</span></label>
                             <select id="type" name="type"
                                 class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input">
-                                <option value="product">₹</option>
-                                <option value="category">%</option>
+                                <option value="₹">₹</option>
+                                <option value="%">%</option>
                             </select>
                         </div>
-                        <div class="w-full sm:w-[40%] flex flex-col">
-                            <label for="amount" class="change-text text-sm md:text-base mb-1">Amount <span
+                        <div class="w-full sm:w-[68%] flex flex-col">
+                            <label for="discount" class="change-text text-sm md:text-base mb-1">Discount <span
                                     class="text-red-600 text-xl">*</span></label>
-                            <input type="number" id="amount" name="amount"
+                            <input type="number" id="discount" name="discount"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                placeholder="Enter Discount" />
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row w-full gap-5">
+                        <div class="w-full sm:w-[48%] flex flex-col">
+                            <label for="flat-start-date" class="change-text text-sm md:text-base mb-1">Start Date <span
+                                    class="text-red-600 text-xl">*</span></label>
+                            <input type="date" id="flat-start-date" name="flat_start_date"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input" />
+                        </div>
+                        <div class="w-full sm:w-[48%] flex flex-col">
+                            <label for="flat-end-date" class="change-text text-sm md:text-base mb-1">End Date <span
+                                    class="text-red-600 text-xl">*</span></label>
+                            <input type="date" id="flat-end-date" name="flat_end_date"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input" />
+                        </div>
+                    </div>
+                    <div class="flex justify-around mt-4 gap-4">
+                        <button type="submit"
+                            class="w-32 px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base rounded">
+                            Create
+                        </button>
+                        <button id="cancel-flatDiscount" type="button"
+                            class="w-32 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="flex flex-col w-full md:w-[48%] items-center gap-5">
+                <h2 class="change-text text-2xl md:text-3xl font-bold text-center">Cashback Discount</h2>
+                <h3 id="cashback-heading" class="change-text font-bold text-center text-lg">No Discount Added</h3>
+                <div class="w-full overflow-x-auto">
+                    <table id="cashback" class="w-full hidden table-auto border-collapse border change-border">
+                        <thead class="bg-gray-800 text-white">
+                            <tr>
+                                <td class="px-4 py-2 border change-border">Get</td>
+                                <td class="px-4 py-2 border change-border">On</td>
+                                <td class="px-4 py-2 border change-border">Start</td>
+                                <td class="px-4 py-2 border change-border">End</td>
+                                <td class="px-4 py-2 border change-border">Edit</td>
+                            </tr>
+                        </thead>
+                        <tbody id="cashback-details" class="change-text text-center cursor-pointer"></tbody>
+                    </table>
+                </div>
+                <button type="button" id="add-cashback"
+                    class="w-40 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">Add
+                    Discount</button>
+                <form id="cashback-form"
+                    class="hidden flex-col gap-4 mt-6 border rounded-md p-4 w-full change-border transition-all duration-300 ease-in-out">
+                    <div class="flex w-full gap-5">
+                        <div class="w-[43%] flex flex-col">
+                            <label for="get-type" class="change-text w-full text-sm md:text-base mb-1">
+                                Get Type <span class="text-red-600 text-xl">*</span>
+                            </label>
+                            <select id="get-type" name="get-type"
+                                class="border change-border rounded-md w-full p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input">
+                                <option value="₹">₹</option>
+                                <option value="%">%</option>
+                            </select>
+                        </div>
+                        <div class="w-[53%] flex flex-col">
+                            <label for="get" class="change-text text-sm md:text-base mb-1">
+                                Get Cashback <span class="text-red-600 text-xl">*</span>
+                            </label>
+                            <input type="number" id="get" name="get"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                placeholder="Enter Amount" />
+                        </div>
+                    </div>
+                    <div class="flex flex-col w-full gap-5">
+                        <div class="w-full flex flex-col">
+                            <label for="cashback-on" class="change-text text-sm md:text-base mb-1">On Amount <span
+                                    class="text-red-600 text-xl">*</span></label>
+                            <input type="number" id="cashback-on" name="cashback-on"
                                 class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
                                 placeholder="Enter Amount" />
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row w-full gap-5">
-                        <div class="w-full sm:w-1/2 flex flex-col">
-                            <label for="flat-start-date" class="change-text text-sm md:text-base mb-1">Start Date <span
-                                    class="text-red-600 text-xl">*</span></label>
-                            <input type="date" id="flat-start-date" name="flat-start_date"
+                        <div class="w-full sm:w-[48%] flex flex-col">
+                            <label for="cashback-start-date" class="change-text text-sm md:text-base mb-1">Start
+                                Date
+                                <span class="text-red-600 text-xl">*</span></label>
+                            <input type="date" id="cashback-start-date" name="cashback_start_date"
                                 class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input" />
                         </div>
-                        <div class="w-full sm:w-1/2 flex flex-col">
-                            <label for="flat-end-date" class="change-text text-sm md:text-base mb-1">End Date <span
-                                    class="text-red-600 text-xl">*</span></label>
-                            <input type="date" id="flat-end-date" name="flat-end_date"
+                        <div class="w-full sm:w-[48%] flex flex-col">
+                            <label for="cashback-end-date" class="change-text text-sm md:text-base mb-1">End Date
+                                <span class="text-red-600 text-xl">*</span></label>
+                            <input type="date" id="cashback-end-date" name="cashback_end_date"
                                 class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input" />
                         </div>
                     </div>
-                    <div class="flex flex-col sm:flex-row justify-center sm:justify-around mt-4 gap-4">
+                    <div class="flex justify-around mt-4 gap-4">
                         <button type="submit"
-                            class="w-full sm:w-32 px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base rounded">
+                            class="w-32 px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base rounded">
                             Create
                         </button>
-                        <button id="cancel-flatDiscount" type="button"
-                            class="w-full sm:w-32 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">
+                        <button id="cancel-cashback" type="button"
+                            class="w-32 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="flex flex-col w-full md:w-[48%] items-center gap-5">
+                <h2 class="change-text text-2xl md:text-3xl font-bold text-center">Charges Discount</h2>
+                <h3 id="chargeDiscount-heading" class="change-text font-bold text-center text-lg">No Discount Added</h3>
+                <div class="w-full overflow-x-auto">
+                    <table id="chargeDiscount" class="w-full hidden table-auto border-collapse border change-border">
+                        <thead class="bg-gray-800 text-white">
+                            <tr>
+                                <td class="px-4 py-2 border change-border">Free Charges</td>
+                                <td class="px-4 py-2 border change-border">On</td>
+                                <td class="px-4 py-2 border change-border">Start Date</td>
+                                <td class="px-4 py-2 border change-border">End Date</td>
+                                <td class="px-4 py-2 border change-border">Edit</td>
+                            </tr>
+                        </thead>
+                        <tbody id="chargeDiscount-details" class="change-text text-center cursor-pointer"></tbody>
+                    </table>
+                </div>
+                <button type="button" id="add-chargesDiscount"
+                    class="w-40 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">Add
+                    Discount</button>
+                <form id="chargeDiscount-form"
+                    class="hidden flex-col gap-4 mt-6 border rounded-md p-4 w-full change-border transition-all duration-300 ease-in-out">
+                    <div class="flex w-full gap-5 flex-col sm:flex-row">
+                        <div class="w-full flex flex-col">
+                            <label for="charges-type" class="change-text w-full text-sm md:text-base mb-1">
+                                Select Charges <span class="text-red-600 text-xl">*</span>
+                            </label>
+                            <select id="charges-type" name="charges-type"
+                                class="border change-border rounded-md w-full p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input">
+                                <option value="Charge 1">Charge 1</option>
+                                <option value="Charge 2">Charge 2</option>
+                                <option value="Charge 3">Charge 3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row w-full gap-5">
+                        <div class="w-full sm:w-[28%] flex flex-col">
+                            <label for="charge-discount-type" class="change-text text-sm md:text-base mb-1">Type <span
+                                    class="text-red-600 text-xl">*</span></label>
+                            <select id="charge-discount-type" name="charge_discount_type"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input">
+                                <option value="₹">₹</option>
+                                <option value="%">%</option>
+                            </select>
+                        </div>
+                        <div class="w-full sm:w-[68%] flex flex-col">
+                            <label for="charge-discount-discount" class="change-text text-sm md:text-base mb-1">Discount
+                                <span class="text-red-600 text-xl">*</span></label>
+                            <input type="number" id="charge-discount-discount" name="charge_discount_discount"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                placeholder="Enter Discount" />
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row w-full gap-5">
+                        <div class="w-full sm:w-[48%] flex flex-col">
+                            <label for="charge-start-date" class="change-text text-sm md:text-base mb-1">Start Date
+                                <span class="text-red-600 text-xl">*</span></label>
+                            <input type="date" id="charge-start-date" name="charge_start_date"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input" />
+                        </div>
+                        <div class="w-full sm:w-[48%] flex flex-col">
+                            <label for="charge-end-date" class="change-text text-sm md:text-base mb-1">End Date
+                                <span class="text-red-600 text-xl">*</span></label>
+                            <input type="date" id="charge-end-date" name="charge_end_date"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input" />
+                        </div>
+                    </div>
+                    <div class="flex justify-around mt-4 gap-4">
+                        <button type="submit"
+                            class="w-32 px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base rounded">
+                            Create
+                        </button>
+                        <button id="cancel-chargeDiscount" type="button"
+                            class="w-32 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="flex flex-col w-full md:w-[48%] items-center gap-5">
+                <h2 class="change-text text-2xl md:text-3xl font-bold text-center">Bulk Discount</h2>
+                <h3 id="bulkDiscount-heading" class="change-text font-bold text-center text-lg">No Discount Added</h3>
+                <div class="w-full overflow-x-auto">
+                    <table id="bulkDiscount" class="w-full hidden table-auto border-collapse border change-border">
+                        <thead class="bg-gray-800 text-white">
+                            <tr>
+                                <td class="px-4 py-2 border change-border">On</td>
+                                <td class="px-4 py-2 border change-border">Name</td>
+                                <td class="px-4 py-2 border change-border">Discount</td>
+                                <td class="px-4 py-2 border change-border">Quantity</td>
+                                <td class="px-4 py-2 border change-border">Start Date</td>
+                                <td class="px-4 py-2 border change-border">End Date</td>
+                                <td class="px-4 py-2 border change-border">Edit</td>
+                            </tr>
+                        </thead>
+                        <tbody id="chargeDiscount-details" class="change-text text-center cursor-pointer"></tbody>
+                    </table>
+                </div>
+                <button type="button" id="add-bulkDiscount"
+                    class="w-40 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">Add
+                    Discount</button>
+                <form id="bulkDiscount-form"
+                    class="hidden flex-col gap-4 mt-6 border rounded-md p-4 w-full change-border transition-all duration-300 ease-in-out">
+                    <div class="flex w-full gap-5 flex-col sm:flex-row">
+                        <div class="w-full sm:w-[48%] flex flex-col">
+                            <label for="bulk-on" class="change-text text-sm md:text-base mb-1">Discount On <span
+                                    class="text-red-600 text-xl">*</span></label>
+                            <select id="bulk-on" name="bulk_on"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input">
+                                <option value="product">Product</option>
+                                <option value="category">Category</option>
+                            </select>
+                        </div>
+                        <div id="bulk-product-div" class="w-full sm:w-[48%] flex flex-col">
+                            <label for="bulk-namecode" class="change-text text-sm md:text-base mb-1">Name or Code <span
+                                    class="text-red-600 text-xl">*</span></label>
+                            <input type="text" id="bulk-namecode" name="bulk_namecode"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                placeholder="Enter Name or Code" />
+                        </div>
+                        <div id="bulk-category-div" class="w-full sm:w-[48%] hidden flex-col">
+                            <label for="bulk-category" class="change-text text-sm md:text-base mb-1">Categories <span
+                                    class="text-red-600 text-xl">*</span></label>
+                            <select id="bulk-category" name="bulk_category"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"></select>
+                        </div>
+                    </div>
+                    <div id="bulk-remove-div" class="hidden flex-col sm:flex-row w-full items-end gap-5">
+                        <div class="w-full sm:w-[78%] flex flex-col">
+                            <label for="bulk-remove" class="change-text text-sm md:text-base mb-1">Exclude Product <span
+                                    class="text-red-600 text-xl">*</span></label>
+                            <input type="text" id="bulk-remove" name="bulk_remove"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                placeholder="Enter Name or Code" />
+                        </div>
+                        <div class="w-full sm:w-[18%] flex flex-col">
+                            <button type="button" id="bulk-remove-product"
+                                class="w-full px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">Add</button>
+                        </div>
+                    </div>
+                    <div id="bulk-removed-product-div" class="hidden flex-col w-full gap-5">
+                        <h3 class="change-text text-xl font-bold text-center w-full">Removed Product:</h3>
+                        <ul id="bulk-removed-product" class="w-full flex flex-wrap gap-2 change-text"></ul>
+                    </div>
+                    <div class="flex flex-col sm:flex-row w-full gap-5">
+                        <div class="w-full sm:w-[28%] flex flex-col">
+                            <label for="bulk-type" class="change-text text-sm md:text-base mb-1">Type <span
+                                    class="text-red-600 text-xl">*</span></label>
+                            <select id="bulk-type" name="bulk_type"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input">
+                                <option value="₹">₹</option>
+                                <option value="%">%</option>
+                            </select>
+                        </div>
+                        <div class="w-full sm:w-[38%] flex flex-col">
+                            <label for="bulk-discount" class="change-text text-sm md:text-base mb-1">Discount <span
+                                    class="text-red-600 text-xl">*</span></label>
+                            <input type="number" id="bulk-discount" name="bulk_discount"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                placeholder="Enter Discount" />
+                        </div>
+                        <div class="w-full sm:w-[28%] flex flex-col">
+                            <label for="bulk-quantity" class="change-text text-sm md:text-base mb-1">Quantity <span
+                                    class="text-red-600 text-xl">*</span></label>
+                            <input type="number" id="bulk-quantity" name="bulk_quantity"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input"
+                                placeholder="Enter Quantity" />
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row w-full gap-5">
+                        <div class="w-full sm:w-[48%] flex flex-col">
+                            <label for="bulk-start-date" class="change-text text-sm md:text-base mb-1">Start Date
+                                <span class="text-red-600 text-xl">*</span></label>
+                            <input type="date" id="bulk-start-date" name="bulk_start_date"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input" />
+                        </div>
+                        <div class="w-full sm:w-[48%] flex flex-col">
+                            <label for="bulk-end-date" class="change-text text-sm md:text-base mb-1">End Date
+                                <span class="text-red-600 text-xl">*</span></label>
+                            <input type="date" id="bulk-end-date" name="bulk_end_date"
+                                class="border change-border rounded-md p-2 h-10 focus:outline-none focus:ring-2 focus:ring-gray-500 change-input" />
+                        </div>
+                    </div>
+                    <div class="flex justify-around mt-4 gap-4">
+                        <button type="submit"
+                            class="w-32 px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base rounded">
+                            Create
+                        </button>
+                        <button id="cancel-bulkDiscount" type="button"
+                            class="w-32 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm md:text-base rounded">
                             Cancel
                         </button>
                     </div>
@@ -778,12 +1263,12 @@
                         <th class="px-4 py-2 border change-border">Name</th>
                         <th class="w-[122px] px-4 py-2 border change-border">Image</th>
                         <th class="px-4 py-2 border change-border">Code</th>
-                        <th class="px-4 py-2 border change-border">Quantity/th>
+                        <th class="px-4 py-2 border change-border">Quantity</th>
                         <th class="px-4 py-2 border change-border">Category</th>
                         <th class="px-4 py-2 border change-border">Location</th>
                         <th class="w-[122px] px-4 py-2 border change-border">L-Image</th>
-                        <th class="px-4 py-2 border change-border">R-Price</th>
-                        <th class="px-4 py-2 border change-border">S-Price</th>
+                        <th class="px-4 py-2 border change-border">Purchased</th>
+                        <th class="px-4 py-2 border change-border">Selling</th>
                         <th class="px-4 py-2 border change-border">Tax</th>
                         <th class="px-4 py-2 border change-border">Packaging</th>
                         <th class="px-4 py-2 border change-border">Handling</th>

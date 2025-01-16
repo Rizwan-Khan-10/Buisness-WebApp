@@ -1,7 +1,11 @@
 const storeForm = document.getElementById("store-form");
+const editStoreForm = document.getElementById("edit-store-form");
+const addStore = document.getElementById("add-store");
 const addCoadmin = document.getElementById("add-coadmin");
 const addMember = document.getElementById("add-member");
+const adminDetails = document.getElementById("admin-details");
 const form = document.getElementById("user-form")
+const editForm = document.getElementById("edit-user-form")
 const addCharge = document.getElementById("add-charge");
 const addCard = document.getElementById("add-card");
 const addProCharge = document.getElementById("add-product-charge");
@@ -13,12 +17,22 @@ const canCard = document.getElementById("cancel-new-card");
 const canProCharge = document.getElementById("cancel-new-product-charge");
 const userRole = document.getElementById("user");
 const permissionsDiv = document.getElementById("permissions");
+const editPermissionsDiv = document.getElementById("edit-permissions");
 const addBuyXGetY = document.getElementById("add-buyXgetY");
 const buyXgetYForm = document.getElementById("buyXgetY-form");
 const canBuyXGetY = document.getElementById("cancel-buyXgetY");
 const addFlatDiscount = document.getElementById("add-flatDiscount");
 const flatDiscountForm = document.getElementById("flatDiscount-form");
 const canFlatDiscount = document.getElementById("cancel-flatDiscount");
+const addCashback = document.getElementById("add-cashback");
+const cashbackForm = document.getElementById("cashback-form");
+const canCashback = document.getElementById("cancel-cashback");
+const addChargeDiscount = document.getElementById("add-chargesDiscount");
+const chargeDiscountForm = document.getElementById("chargeDiscount-form");
+const canChargeDiscount = document.getElementById("cancel-chargeDiscount");
+const addBulkDiscount = document.getElementById("add-bulkDiscount");
+const bulkDiscountForm = document.getElementById("bulkDiscount-form");
+const canBulkDiscount = document.getElementById("cancel-bulkDiscount");
 const onSelect = document.getElementById('on');
 const productDiv = document.getElementById('product-div');
 const categoryDiv = document.getElementById('category-div');
@@ -27,6 +41,14 @@ const removedProductDiv = document.getElementById('removed-product-div');
 const removeInput = document.getElementById('remove');
 const removeProductButton = document.getElementById('remove-product');
 const removedProductList = document.getElementById('removed-product');
+const bulkOnSelect = document.getElementById('bulk-on');
+const bulkProductDiv = document.getElementById('bulk-product-div');
+const bulkCategoryDiv = document.getElementById('bulk-category-div');
+const bulkRemoveDiv = document.getElementById('bulk-remove-div');
+const bulkRemovedProductDiv = document.getElementById('bulk-removed-product-div');
+const bulkRemoveInput = document.getElementById('bulk-remove');
+const bulkRemoveProductButton = document.getElementById('bulk-remove-product');
+const bulkRemovedProductList = document.getElementById('bulk-removed-product');
 
 const permissions = [
     { value: "manage-member", label: "Manage Member", allow: "coadmin" },
@@ -216,28 +238,29 @@ document.addEventListener("DOMContentLoaded", function () {
     displayStoreDetails('admin', adminData);
     displayStoreDetails('coadmin', coAdminData);
     displayStoreDetails('member', memberData);
+
     document.querySelector(".edit-admin").addEventListener("click", () => {
-        toggleVisibility(form, true, "admin", "edit");
+        toggleVisibility(editForm, true, "admin", "edit");
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
     document.querySelectorAll(".edit-store").forEach(editButton => {
         editButton.addEventListener("click", () => {
-            toggleVisibility(storeForm, true, "store", "edit");
+            toggleVisibility(editStoreForm, true, "store", "edit");
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
     });
 
     document.querySelectorAll(".edit-coadmin").forEach(editButton => {
         editButton.addEventListener("click", () => {
-            toggleVisibility(form, true, "coadmin", "edit");
+            toggleVisibility(editForm, true, "coadmin", "edit");
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
     });
 
     document.querySelectorAll(".edit-member").forEach(editButton => {
         editButton.addEventListener("click", () => {
-            toggleVisibility(form, true, "member", "edit");
+            toggleVisibility(editForm, true, "member", "edit");
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
     });
@@ -251,32 +274,34 @@ function toggleVisibility(element, show, info, type) {
         document.getElementById("inventory-details").classList.add("hidden");
         document.getElementById("charges-section").classList.remove("flex");
         document.getElementById("charges-section").classList.add("hidden");
+        document.getElementById("discount-section").classList.remove("flex");
+        document.getElementById("discount-section").classList.add("hidden");
         if (type === "new" && info === "store") {
             document.getElementById("store").innerHTML = "Add Store Details";
             storeForm.firstElementChild.method = "POST";
         } else if (type === "edit" && info === "store") {
-            document.getElementById("store").innerHTML = "Edit Store Details";
-            storeForm.firstElementChild.method = "PUT";
+            document.getElementById("edit-store").innerHTML = "Edit Store Details";
+            editStoreForm.firstElementChild.method = "PUT";
         } else if (type === "new" && info === "coadmin") {
             document.getElementById("user").innerHTML = "Add Co-Admin Details";
             form.firstElementChild.method = "POST";
-            renderPermissions(userRole.innerText);
+            renderPermissions(userRole.innerText, "new");
         } else if (type === "new" && info === "member") {
             document.getElementById("user").innerHTML = "Add Member Details";
             form.firstElementChild.method = "POST";
-            renderPermissions(userRole.innerText);
+            renderPermissions(userRole.innerText, "new");
         } else if (type === "edit" && info === "coadmin") {
-            document.getElementById("user").innerHTML = "Edit Co-Admin Details";
-            form.firstElementChild.method = "PUT";
-            renderPermissions(userRole.innerText);
+            document.getElementById("edit-user").innerHTML = "Edit Co-Admin Details";
+            editForm.firstElementChild.method = "PUT";
+            renderPermissions(userRole.innerText, "edit");
         } else if (type === "edit" && info === "member") {
-            document.getElementById("user").innerHTML = "Edit Member Details";
-            form.firstElementChild.method = "PUT";
-            renderPermissions(userRole.innerText);
+            document.getElementById("edit-user").innerHTML = "Edit Member Details";
+            editForm.firstElementChild.method = "PUT";
+            renderPermissions(userRole.innerText, "edit");
         } else if (type === "edit" && info === "admin") {
-            document.getElementById("user").innerHTML = "Edit Admin Details";
-            form.firstElementChild.method = "PUT";
-            renderPermissions(userRole.innerText);
+            document.getElementById("edit-user").innerHTML = "Edit Admin Details";
+            editForm.firstElementChild.method = "PUT";
+            renderPermissions(userRole.innerText, "edit");
         }
     } else {
         element.classList.remove("flex");
@@ -285,33 +310,66 @@ function toggleVisibility(element, show, info, type) {
         document.getElementById("inventory-details").classList.remove("hidden");
         document.getElementById("charges-section").classList.remove("hidden");
         document.getElementById("charges-section").classList.add("flex");
+        document.getElementById("discount-section").classList.remove("hidden");
+        document.getElementById("discount-section").classList.add("flex");
     }
 }
 
-document.getElementById("add-store").addEventListener("click", () => {
+addStore.addEventListener("click", (e) => {
     toggleVisibility(storeForm, true, "store", "new");
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-addCoadmin.addEventListener("click", () => {
+addCoadmin.addEventListener("click", (e) => {
     toggleVisibility(form, true, "coadmin", "new");
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-addMember.addEventListener("click", () => {
+addMember.addEventListener("click", (e) => {
     toggleVisibility(form, true, "member", "new");
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-document.getElementById("cancel-store-form").addEventListener("click", () => {
+document.getElementById("cancel-store-form").addEventListener("click", (e) => {
+    toggleVisibility(storeForm, false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+document.getElementById("cancel-edit-store-form").addEventListener("click", (e) => {
     toggleVisibility(storeForm, false);
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 document.getElementById("cancel-form").addEventListener("click", (e) => {
     toggleVisibility(form, false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const btnText = document.getElementById("user").innerHTML.trim();
+    if (btnText === "Add Member Details") {
+        scrollToElement("member-heading");
+    } else if (btnText === "Add Co-Admin Details") {
+        scrollToElement("coadmin-heading")
+    }
 });
+
+document.getElementById("cancel-edit-form").addEventListener("click", (e) => {
+    toggleVisibility(form, false);
+    const btnText = document.getElementById("user").innerHTML.trim();
+    if (btnText === "Edit Admin Details") {
+        scrollToElement("admin-heading");
+    } else if (btnText === "Edit Member Details") {
+        scrollToElement("member-heading");
+    } else if (btnText === "Edit Co-Admin Details") {
+        scrollToElement("coadmin-heading")
+    }
+});
+
+function scrollToElement(elementId) {
+    const targetElement = document.getElementById(elementId);
+    if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth", block: "center" });
+    } else {
+        console.error(`Element with ID "${elementId}" not found.`);
+    }
+}
 
 document.querySelectorAll('.edit-btn').forEach(icon => {
     icon.addEventListener('click', () => {
@@ -359,6 +417,8 @@ function toggleCharges(form, btn, show) {
     { button: addProCharge, form: newProCharge },
     { button: addBuyXGetY, form: buyXgetYForm },
     { button: addFlatDiscount, form: flatDiscountForm },
+    { button: addCashback, form: cashbackForm },
+    { button: addBulkDiscount, form: bulkDiscountForm },
 ].forEach(({ button, form }) => {
     button.addEventListener("click", () => toggleCharges(form, button, true));
 });
@@ -369,60 +429,110 @@ function toggleCharges(form, btn, show) {
     { button: canProCharge, form: newProCharge, trigger: addProCharge },
     { button: canBuyXGetY, form: buyXgetYForm, trigger: addBuyXGetY },
     { button: canFlatDiscount, form: flatDiscountForm, trigger: addFlatDiscount },
+    { button: canCashback, form: cashbackForm, trigger: addCashback },
+    { button: canChargeDiscount, form: chargeDiscountForm, trigger: addChargeDiscount },
+    { button: canBulkDiscount, form: bulkDiscountForm, trigger: addBulkDiscount },
 ].forEach(({ button, form, trigger }) => {
     button.addEventListener("click", () => toggleCharges(form, trigger, false));
 });
 
-function renderPermissions(role) {
+function renderPermissions(role, formType) {
     permissionsDiv.innerHTML = "";
+    editPermissionsDiv.innerHTML = "";
     const permissionDiv = document.getElementById("permission-div");
-    if (role === "Add Co-Admin Details" || role === "Edit Co-Admin Details") {
-        const allowedPermissions = permissions.filter(permission => permission.allow === "coadmin");
-        if (permissionDiv.classList.contains("hidden")) {
-            permissionDiv.classList.remove("hidden");
-            permissionDiv.classList.add("flex");
+    const editPermissionDiv = document.getElementById("edit-permission-div");
+    if (formType === "new") {
+        if (role === "Add Co-Admin Details") {
+            const allowedPermissions = permissions.filter(permission => permission.allow === "coadmin");
+            if (permissionDiv.classList.contains("hidden")) {
+                permissionDiv.classList.remove("hidden");
+                permissionDiv.classList.add("flex");
+            }
+            allowedPermissions.forEach(permission => {
+                const label = document.createElement("label");
+                label.classList.add("flex", "items-center", "space-x-2");
+                label.style.width = "200px";
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.name = "permissions";
+                checkbox.value = permission.value;
+                checkbox.classList.add("w-5", "h-5");
+                const span = document.createElement("span");
+                span.textContent = permission.label;
+                label.appendChild(checkbox);
+                label.appendChild(span);
+                permissionsDiv.appendChild(label);
+            });
         }
-        allowedPermissions.forEach(permission => {
-            const label = document.createElement("label");
-            label.classList.add("flex", "items-center", "space-x-2");
-            label.style.width = "200px";
-            const checkbox = document.createElement("input");
-            checkbox.type = "checkbox";
-            checkbox.name = "permissions";
-            checkbox.value = permission.value;
-            checkbox.classList.add("w-5", "h-5");
-            const span = document.createElement("span");
-            span.textContent = permission.label;
-            label.appendChild(checkbox);
-            label.appendChild(span);
-            permissionsDiv.appendChild(label);
-        });
-    }
-    else if (role === "Add Member Details" || role === "Edit Member Details") {
-        const allowedPermissions = permissions.filter(permission => permission.allow === "member");
-        if (permissionDiv.classList.contains("hidden")) {
-            permissionDiv.classList.remove("hidden");
-            permissionDiv.classList.add("flex");
+        else if (role === "Add Member Details") {
+            const allowedPermissions = permissions.filter(permission => permission.allow === "member");
+            if (permissionDiv.classList.contains("hidden")) {
+                permissionDiv.classList.remove("hidden");
+                permissionDiv.classList.add("flex");
+            }
+            allowedPermissions.forEach(permission => {
+                const label = document.createElement("label");
+                label.classList.add("flex", "items-center", "space-x-2");
+                label.style.width = "200px";
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.name = "permissions";
+                checkbox.value = permission.value;
+                checkbox.classList.add("w-5", "h-5");
+                const span = document.createElement("span");
+                span.textContent = permission.label;
+                label.appendChild(checkbox);
+                label.appendChild(span);
+                permissionsDiv.appendChild(label);
+            });
         }
-        allowedPermissions.forEach(permission => {
-            const label = document.createElement("label");
-            label.classList.add("flex", "items-center", "space-x-2");
-            label.style.width = "200px";
-            const checkbox = document.createElement("input");
-            checkbox.type = "checkbox";
-            checkbox.name = "permissions";
-            checkbox.value = permission.value;
-            checkbox.classList.add("w-5", "h-5");
-            const span = document.createElement("span");
-            span.textContent = permission.label;
-            label.appendChild(checkbox);
-            label.appendChild(span);
-            permissionsDiv.appendChild(label);
-        });
-    } else if (role === "Edit Admin Details") {
-        if (permissionDiv.classList.contains("flex")) {
-            permissionDiv.classList.remove("flex");
-            permissionDiv.classList.add("hidden");
+    } else if (formType === "edit") {
+        if (editPermissionDiv.classList.contains("flex")) {
+            editPermissionDiv.classList.remove("flex");
+            editPermissionDiv.classList.add("hidden");
+        } else if (role === "Add Co-Admin Details") {
+            const allowedPermissions = permissions.filter(permission => permission.allow === "coadmin");
+            if (editPermissionDiv.classList.contains("hidden")) {
+                editPermissionDiv.classList.remove("hidden");
+                editPermissionDiv.classList.add("flex");
+            }
+            allowedPermissions.forEach(permission => {
+                const label = document.createElement("label");
+                label.classList.add("flex", "items-center", "space-x-2");
+                label.style.width = "200px";
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.name = "permissions";
+                checkbox.value = permission.value;
+                checkbox.classList.add("w-5", "h-5");
+                const span = document.createElement("span");
+                span.textContent = permission.label;
+                label.appendChild(checkbox);
+                label.appendChild(span);
+                editPermissionsDiv.appendChild(label);
+            });
+        }
+        else if (role === "Add Member Details") {
+            const allowedPermissions = permissions.filter(permission => permission.allow === "member");
+            if (editPermissionDiv.classList.contains("hidden")) {
+                editPermissionDiv.classList.remove("hidden");
+                editPermissionDiv.classList.add("flex");
+            }
+            allowedPermissions.forEach(permission => {
+                const label = document.createElement("label");
+                label.classList.add("flex", "items-center", "space-x-2");
+                label.style.width = "200px";
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.name = "permissions";
+                checkbox.value = permission.value;
+                checkbox.classList.add("w-5", "h-5");
+                const span = document.createElement("span");
+                span.textContent = permission.label;
+                label.appendChild(checkbox);
+                label.appendChild(span);
+                editPermissionsDiv.appendChild(label);
+            });
         }
     }
 }
@@ -475,3 +585,51 @@ removeInput.addEventListener('keydown', function (event) {
     }
 });
 
+bulkOnSelect.addEventListener('change', function () {
+    if (this.value === 'category') {
+        bulkProductDiv.classList.remove('flex');
+        bulkProductDiv.classList.add('hidden');
+        bulkCategoryDiv.classList.remove('hidden');
+        bulkCategoryDiv.classList.add('flex');
+        bulkRemoveDiv.classList.remove('hidden');
+        bulkRemoveDiv.classList.add('flex');
+        bulkRemovedProductDiv.classList.remove('hidden');
+        bulkRemovedProductDiv.classList.add('flex');
+    } else {
+        bulkProductDiv.classList.remove('hidden');
+        bulkProductDiv.classList.add('flex');
+        bulkCategoryDiv.classList.remove('flex');
+        bulkCategoryDiv.classList.add('hidden');
+        bulkRemoveDiv.classList.remove('flex');
+        bulkRemoveDiv.classList.add('hidden');
+        bulkRemovedProductDiv.classList.remove('flex');
+        bulkRemovedProductDiv.classList.add('hidden');
+    }
+});
+
+function addBulkProduct() {
+    const value = bulkRemoveInput.value.trim();
+    if (value) {
+        const li = document.createElement('li');
+        li.classList.add('border', 'py-2', 'px-5', 'text-xl', 'relative', 'rounded');
+        li.textContent = value;
+
+        const removeIcon = document.createElement('i');
+        removeIcon.classList.add('fa-solid', 'fa-times', 'text-sm', 'absolute', 'top-1', 'right-1', 'cursor-pointer', 'text-red-500');
+        removeIcon.title = 'Remove item';
+        removeIcon.addEventListener('click', function () {
+            li.remove();
+        });
+        li.appendChild(removeIcon);
+        bulkRemovedProductList.appendChild(li);
+        bulkRemoveInput.value = '';
+    }
+}
+
+bulkRemoveProductButton.addEventListener('click', addBulkProduct);
+bulkRemoveInput.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        addBulkProduct();
+    }
+});

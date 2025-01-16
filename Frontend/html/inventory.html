@@ -150,7 +150,7 @@
                         <option value="roll">Roll</option>
                     </select>
                 </div>
-                <div class="flex flex-col justify-evenly items-center gap-5 sm:flex-row">
+                <div class="flex justify-around gap-5">
                     <button type="submit"
                         class="w-28 bg-green-500 text-white font-medium py-2 px-4 rounded-md hover:bg-green-600">Submit</button>
                     <button type="button" id="cancel-category-form"
@@ -164,14 +164,9 @@
                 <div class="flex justify-between items-start">
                     <div class="w-[95%]">
                         <label id="edit-category-name" class="flex flex-col gap-2 change-text">
-                            <span>Category :</span>
-                            <div class="flex items-center space-x-2">
-                                <select name="edit-category-name" disabled
-                                    class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
-                                </select>
-                                <input type="text" name="new-category-name" placeholder="Change Name" readonly
-                                    class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
-                            </div>
+                            <span>Category Name</span>
+                            <input type="text" name="new-category-name" placeholder="Change Name" readonly
+                                class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
                         </label>
                     </div>
                     <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
@@ -180,7 +175,8 @@
                     <div class="w-[95%]">
                         <label id="edit-category-gst" class="flex flex-col gap-2 change-text">
                             <span>GST (%)</span>
-                            <input type="text" id="edit-category-gst" name="edit-category-gst" placeholder="Enter value" readonly
+                            <input type="text" id="edit-category-gst" name="edit-category-gst" placeholder="Enter value"
+                                readonly
                                 class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
                         </label>
                     </div>
@@ -207,7 +203,7 @@
                     </div>
                     <i class="fa-regular fa-pen-to-square edit-btn change-text"></i>
                 </div>
-                <div class="flex flex-col justify-evenly items-center gap-5">
+                <div class="flex flex-col justify-center sm:flex-row sm:justify-around gap-5">
                     <button type="submit"
                         class="w-full bg-green-500 text-white font-medium py-2 px-4 rounded-md hover:bg-green-600">Submit</button>
                     <button type="submit"
@@ -434,15 +430,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col my-4 sm:flex-row sm:justify-around gap-5">
-                    <div class="w-full sm:w-[30%]">
-                        <button type="submit"
-                            class="w-full bg-green-500 text-white font-medium py-2 px-4 rounded-md hover:bg-green-600">Submit</button>
-                    </div>
-                    <div class="w-full sm:w-[30%]">
-                        <button type="button" id="cancel-product-form"
-                            class="w-full bg-cyan-500 text-white font-medium py-2 px-4 rounded-md hover:bg-cyan-600">Cancel</button>
-                    </div>
+                <div class="flex my-4 justify-around gap-5">
+                    <button type="submit"
+                        class="w-24 bg-green-500 text-white font-medium py-2 px-4 rounded-md hover:bg-green-600">Submit</button>
+                    <button type="button" id="cancel-product-form"
+                        class="w-24 bg-cyan-500 text-white font-medium py-2 px-4 rounded-md hover:bg-cyan-600">Cancel</button>
                 </div>
             </form>
         </div>
@@ -653,7 +645,8 @@
                         <div class="w-[95%]">
                             <label id="edit-product-gst" class="flex flex-col gap-2 change-text">
                                 <span>GST (%)</span>
-                                <input type="text" id="edit-product-gst" name="edit-product-gst" placeholder="Enter value" readonly
+                                <input type="text" id="edit-product-gst" name="edit-product-gst"
+                                    placeholder="Enter value" readonly
                                     class="block w-full border border-gray-300 rounded-md py-2 px-4 focus:ring-cyan-500 focus:border-cyan-500 change-input">
                             </label>
                         </div>
