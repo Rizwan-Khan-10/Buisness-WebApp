@@ -1,49 +1,45 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../db/connection.js';
+import Store from './store.model.js';
 
-const Store = sequelize.define('Store', {
+const Category = sequelize.define('Category', {
     _id: {
         type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
         defaultValue: sequelize.literal('UUID()'),
     },
-    store_name: {
+    store_id: {
         type: DataTypes.STRING,
         allowNull: false,
-    },
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            isEmail: true,
+        references: {
+            model: Store,
+            key: '_id',
         },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
     },
-    address: {
+    added_by: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    logo: {
+    category_name: {
         type: DataTypes.STRING,
+        allowNull: false,
+    },
+    gst: {
+        type: DataTypes.FLOAT,
         allowNull: true,
     },
-    currency: {
+    unit: {
         type: DataTypes.STRING,
-        allowNull: false, 
+        allowNull: false,
     },
-    contact: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-    gstin_no: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-    date_created: {
+    date_added: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: DataTypes.NOW, 
+        defaultValue: DataTypes.NOW,
     },
 });
 
-export default Store;
+export default Category;

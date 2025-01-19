@@ -49,6 +49,7 @@ const bulkRemoveInput = document.getElementById('bulk-remove');
 const bulkRemoveProductButton = document.getElementById('bulk-remove-product');
 const bulkRemovedProductList = document.getElementById('bulk-removed-product');
 const addNewStore = document.getElementById("add-new-store");
+const addNewUser = document.getElementById("add-new-user");
 const generatedIds = new Set();
 
 const permissions = [
@@ -282,11 +283,11 @@ function toggleVisibility(element, show, info, type) {
         document.getElementById("discount-section").classList.add("hidden");
         if (type === "new" && info === "store") {
             document.getElementById("store").innerHTML = "Add Store Details";
-            // removeStore.classList.add("hidden");
+            removeStore.classList.add("hidden");
             storeForm.firstElementChild.method = "POST";
         } else if (type === "edit" && info === "store") {
             document.getElementById("store").innerHTML = "Edit Store Details";
-            // removeStore.classList.remove("hidden");
+            removeStore.classList.remove("hidden");
             storeForm.firstElementChild.method = "PUT";
         } else if (type === "new" && info === "coadmin") {
             document.getElementById("user").innerHTML = "Add Co-Admin Details";
@@ -359,31 +360,6 @@ function scrollToElement(elementId) {
         console.error(`Element with ID "${elementId}" not found.`);
     }
 }
-
-document.querySelectorAll('.edit-btn').forEach(icon => {
-    icon.addEventListener('click', () => {
-        const container = icon.closest('div');
-        const input = container.querySelector('.change-input');
-
-        if (input) {
-            if (input.hasAttribute('readonly') || input.hasAttribute('disabled')) {
-                input.readOnly = false;
-                input.disabled = false;
-                icon.classList.remove("fa-pen-to-square", "fa-regular");
-                icon.classList.add("fa-solid", "fa-check");
-            } else {
-                input.readOnly = true;
-                input.disabled = true;
-                icon.classList.remove("fa-solid", "fa-check");
-                icon.classList.add("fa-pen-to-square", "fa-regular");
-            }
-
-            if (!input.readOnly && !input.disabled) {
-                input.focus();
-            }
-        }
-    });
-});
 
 function toggleCharges(form, btn, show) {
     form.classList.toggle("hidden", !show);
@@ -598,7 +574,7 @@ function validateAndGetFormData(formElement, requiredFieldsSelector) {
         if (!field.value.trim()) {
             isValid = false;
             field.classList.add('error');
-            emptyFields.push(field.name || 'Unnamed Field');
+            emptyFields.push(field.placeholder || field.name || 'Unnamed Field');
         } else {
             field.classList.remove('error');
         }
@@ -631,3 +607,18 @@ addNewStore.addEventListener('click', (e) => {
         setupEventListeners();
     }
 });
+
+addNewUser.addEventListener("click",(e)=>{
+    e.preventDefault();
+    const formData = validateAndGetFormData(form, '[required]');
+    if (formData) {
+        formData.aid = generateUniqueId();
+        formData.id = formData.id || formData.aid;
+        formData.photo = formData.photo || '../assets/images/profile.png';
+        displayStoreDetails('member', formData);
+        toggleVisibility(storeForm, false);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        setupEventListeners();
+    }
+});
+

@@ -1,16 +1,39 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../db/connection.js';
+import Store from './store.model.js'; 
 
-const Store = sequelize.define('Store', {
+const Employee = sequelize.define('Employee', {
     _id: {
         type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
         defaultValue: sequelize.literal('UUID()'),
     },
-    store_name: {
+    store_id: {
         type: DataTypes.STRING,
         allowNull: false,
+        references: {
+            model: Store, 
+            key: '_id',   
+        },
+        onDelete: 'CASCADE', 
+        onUpdate: 'CASCADE', 
+    },
+    first_name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    middle_name: {
+        type: DataTypes.STRING,
+        allowNull: true, 
+    },
+    last_name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    contact: {
+        type: DataTypes.STRING,
+        allowNull: false, 
     },
     email: {
         type: DataTypes.STRING,
@@ -19,31 +42,27 @@ const Store = sequelize.define('Store', {
             isEmail: true,
         },
     },
-    address: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    logo: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-    currency: {
+    gender: {
         type: DataTypes.STRING,
         allowNull: false, 
     },
-    contact: {
+    date_of_birth: {
+        type: DataTypes.DATE,
+        allowNull: false, 
+    },
+    photo: {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    gstin_no: {
+    address: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: true, 
     },
-    date_created: {
+    date_joined: {
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: DataTypes.NOW, 
     },
 });
 
-export default Store;
+export default Employee;
