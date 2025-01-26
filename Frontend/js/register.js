@@ -9,6 +9,23 @@ const resendOtp = document.getElementById("resend-otp");
 const resendOtpTimer = document.getElementById("resend-timer");
 const otpVerified = document.getElementById("otp-verified");
 
+function splitFormData(formData) {
+    const storeFields = ['GSTIN', 'storeName', 'storeAddress', 'storeContact', 'storeEmail', 'logo', 'currency'];
+    const storeData = {};
+    const otherData = {};
+    Object.keys(formData).forEach(key => {
+        if (key === 'OTP' || key === 'confirmPassword') {
+            return;
+        }
+        if (storeFields.includes(key)) {
+            storeData[key] = formData[key];
+        } else {
+            otherData[key] = formData[key];
+        }
+    });
+    return { storeData, otherData };
+}
+
 function validateAndGetFormData(formElement, requiredFieldsSelector) {
     const requiredFields = formElement.querySelectorAll(requiredFieldsSelector);
     let isValid = true;
@@ -30,21 +47,47 @@ function validateAndGetFormData(formElement, requiredFieldsSelector) {
     const inputs = formElement.querySelectorAll('input, select, textarea');
     inputs.forEach(field => {
         if (field.name) {
-            formData[field.name] = field.value.trim() || 'Not Available';
+            formData[field.name] = field.value.trim() || null;
         }
     });
-    return formData;
+    return splitFormData(formData);
 }
 
 registerBtn.addEventListener("click", (e) => {
     e.preventDefault();
     const formData = validateAndGetFormData(registerForm, '[required]');
+    const storePhoneInput = document.getElementById("store-contact").value;
+    const adminPhoneInput = document.getElementById("admin-contact").value;
+    const phoneRegex = /^[0-9]{10}$/;
+    if ((storePhoneInput || !phoneRegex.test(storePhoneInput)) || (!adminPhoneInput || !phoneRegex.test(adminPhoneInput))) {
+        alert('Please enter a valid phone number.');
+        return;
+    }
+    const emailInput = document.getElementById("store-email").value;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailInput || !emailRegex.test(emailInput)) {
+        alert('Please enter a valid email address.');
+        return;
+    }
     if (password.value !== confirmPassword.value) {
         alert('Password not matched');
         return;
     }
     if (formData) {
-
+        fetch('http://localhost:3000/register/store', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData.storeData),
+        });
+        fetch('http://localhost:3000/register/admin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData.otherData),
+        });
     }
 });
 
@@ -97,6 +140,7 @@ getOtp.addEventListener('click', async (e) => {
 
 verifyOtp.addEventListener('click', async (e) => {
     e.preventDefault();
+    const emailInput = document.getElementById("admin-email").value;
     const otpValue = otpInput.value.trim();
     if (!otpValue) {
         alert("Please enter the OTP.");
@@ -108,7 +152,7 @@ verifyOtp.addEventListener('click', async (e) => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ otp: otpValue }),
+            body: JSON.stringify({ email: emailInput, otp: otpValue }),
         });
 
         if (response.ok) {

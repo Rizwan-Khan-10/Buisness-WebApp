@@ -9,7 +9,7 @@ cloudinary.config({
 });
 
 const validateFileType = (filePath) => {
-    const allowedFormats = ["jpeg", "jpg", "png", "webp", "gif"];
+    const allowedFormats = ["jpeg", "jpg", "png", "webp"];
     const fileExtension = filePath.split('.').pop().toLowerCase();
     return allowedFormats.includes(fileExtension);
 };
@@ -18,15 +18,15 @@ const compressImage = async (inputPath, outputPath) => {
     try {
         await sharp(inputPath)
             .resize({
-                width: 1920, 
+                width: 1920,
                 height: 1920,
-                fit: "inside" 
+                fit: "inside"
             })
             .jpeg({
-                quality: 90, 
-                mozjpeg: true 
+                quality: 90,
+                mozjpeg: true
             })
-            .toFile(outputPath); 
+            .toFile(outputPath);
         console.log("Image compressed successfully:", outputPath);
     } catch (error) {
         console.error("Error during compression:", error.message);

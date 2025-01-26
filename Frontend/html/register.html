@@ -84,26 +84,28 @@
             <i class="text-xl fa-solid fa-bars"></i>
         </div>
     </nav>
-    <section id="register-page-section" class="max-w-4xl mx-auto mt-28 mb-20 px-4 text-slate-200">
+    <section id="register-page-section" class="max-w-4xl mx-auto mt-28 mb-20 px-4">
         <h2 class="text-3xl font-semibold text-center mb-8 change-text">Register Your Store</h2>
         <div class="w-full">
             <form id="registration-form" method="POST"
                 class="border border-black shadow-md rounded-md p-6 w-full ">
                 <h3 class="text-2xl font-semibold text-center mb-4 change-text">Store Details</h3>
                 <div class="flex flex-col items-end justify-center sm:justify-around sm:flex-row mb-4">
-                    <div class="w-full sm:w-[38%]">
+                    <div class="w-full sm:w-[48%]">
                         <label for="store-name" class="text-lg change-text">Store Name <span
                                 class="text-red-500">*</span></label>
-                        <input type="text" id="store-name" name="name" placeholder="Enter Name"
+                        <input type="text" id="store-name" name="storeName" placeholder="Enter Name"
                             class="w-full px-4 py-2 mt-1 rounded-md border focus:outline-none focus:ring-2 focus:ring-cyan-500 change-input"
                             required>
                     </div>
-                    <div class="w-full sm:w-[34%] my-4 sm:my-0">
+                    <div class="w-full sm:w-[48%] my-4 sm:my-0">
                         <label for="store-logo" class="text-lg change-text">Store Logo</label>
                         <input type="file" id="store-logo" name="logo"
                             class="w-full mt-1 border border-gray-300 rounded-md py-1 h-[41.5px] px-4 focus:border-cyan-500  focus:ring-2 focus:ring-cyan-500 change-input">
                     </div>
-                    <div class="flex justify-between items-start w-full sm:w-[23%]">
+                </div>
+                <div class="flex flex-col justify-around sm:flex-row  mb-4">
+                    <div class="flex justify-between items-start w-full sm:w-[48%]">
                         <div class="w-full">
                             <label for="currency-select" class="block mb-2 text-lg change-text">Currency <span
                                     class="text-red-500">*</span></label>
@@ -122,23 +124,28 @@
                             </select>
                         </div>
                     </div>
+                    <div class="w-full sm:w-[48%]">
+                        <label for="store-gstin" class="text-lg change-text">GSTIN</label>
+                        <input type="text" id="store-gstin" name="GSTIN" placeholder="Enter GSTIN"
+                            class="w-full px-4 py-2 mt-1 rounded-md border focus:outline-none focus:ring-2 focus:ring-cyan-500 change-input">
+                    </div>
                 </div>
                 <div class="flex flex-col justify-around sm:flex-row  mb-4">
                     <div class="w-full sm:w-[48%]">
                         <label for="store-email" class="text-lg change-text">Store Email</label>
-                        <input type="email" id="store-email" name="email" placeholder="Enter Email"
+                        <input type="email" id="store-email" name="storeEmail" placeholder="Enter Email" autocomplete="email"
                             class="w-full px-4 py-2 mt-1 rounded-md border focus:outline-none focus:ring-2 focus:ring-cyan-500 change-input">
                     </div>
                     <div class="w-full sm:w-[48%] mt-4 sm:mt-0">
-                        <label for="store-phone" class="text-lg change-text">Store Phone Number</label>
-                        <input type="tel" id="store-phone" name="phone" placeholder="Enter Number"
+                        <label for="store-contact" class="text-lg change-text">Store Phone Number</label>
+                        <input type="tel" id="store-contact" name="storeContact" placeholder="Enter Number"
                             class="w-full px-4 py-2 mt-1 rounded-md border focus:outline-none focus:ring-2 focus:ring-cyan-500 change-input">
                     </div>
                 </div>
                 <div class="mb-4 w-full mx-auto sm:w-[98%] flex flex-col justify-around">
                     <label for="store-address" class="text-lg change-text">Store Address <span
                             class="text-red-500">*</span></label>
-                    <textarea id="store-address" name="address"
+                    <textarea id="store-address" name="storeAddress"
                         class="w-full px-4 py-2 mt-1 rounded-md border focus:outline-none focus:ring-2 focus:ring-cyan-500 change-input"
                         required rows="3" placeholder="Enter Store Address"></textarea>
                 </div>
@@ -147,41 +154,39 @@
                     <div class="w-full sm:w-[31.5%]">
                         <label for="admin-first-name" class="text-lg change-text">First Name <span
                                 class="text-red-500">*</span></label>
-                        <input type="text" id="admin-first-name" name="first-name" placeholder="Enter First Name"
+                        <input type="text" id="admin-first-name" name="firstName" placeholder="Enter First Name"
                             class="w-full px-4 py-2 mt-1 rounded-md border focus:outline-none focus:ring-2 focus:ring-cyan-500 change-input"
                             required>
                     </div>
                     <div class="w-full sm:w-[31.5%] mt-4 sm:mt-0">
-                        <label for="admin-middle-name" class="text-lg change-text">Middle Name <span
-                                class="text-red-500">*</span></label>
-                        <input type="text" id="admin-middle-name" name="middle-name" placeholder="Enter Middle Name"
-                            class="w-full px-4 py-2 mt-1 rounded-md border focus:outline-none focus:ring-2 focus:ring-cyan-500 change-input"
-                            required>
+                        <label for="admin-middle-name" class="text-lg change-text">Middle Name</label>
+                        <input type="text" id="admin-middle-name" name="middleName" placeholder="Enter Middle Name"
+                            class="w-full px-4 py-2 mt-1 rounded-md border focus:outline-none focus:ring-2 focus:ring-cyan-500 change-input">
                     </div>
                     <div class="w-full sm:w-[31.5%] mt-4 sm:mt-0">
                         <label for="admin-last-name" class="text-lg change-text">Last Name <span
                                 class="text-red-500">*</span></label>
-                        <input type="text" id="admin-last-name" name="last-name" placeholder="Enter Last Name"
+                        <input type="text" id="admin-last-name" name="lastName" placeholder="Enter Last Name"
                             class="w-full px-4 py-2 mt-1 rounded-md border focus:outline-none focus:ring-2 focus:ring-cyan-500 change-input"
                             required>
                     </div>
                 </div>
                 <div class="mb-4 w-full mx-auto sm:w-[98%] flex flex-col justify-around">
                     <label for="admin-address" class="text-lg change-text">Admin Address</label>
-                    <textarea id="admin-address" name="address"
+                    <textarea id="admin-address" name="adminAddress"
                         class="w-full px-4 py-2 mt-1 rounded-md border focus:outline-none focus:ring-2 focus:ring-cyan-500 change-input"
                         rows="3" placeholder="Enter Admin Address"></textarea>
                 </div>
                 <div class="flex flex-col justify-around sm:flex-row  mb-4">
                     <div class="w-full sm:w-[48%]">
                         <label for="admin-photo" class="text-lg change-text">Admin Photo</label>
-                        <input type="file" id="admin-photo" name="photo"
+                        <input type="file" id="admin-photo" name="adminPhoto"
                             class="w-full mt-1 border border-gray-300 rounded-md py-1 h-[41.5px] px-4 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500 change-input">
                     </div>
                     <div class="w-full sm:w-[48%] mt-4 sm:mt-0">
-                        <label for="admin-phone" class="text-lg change-text">Admin Phone Number <span
+                        <label for="admin-contact" class="text-lg change-text">Admin Phone Number <span
                                 class="text-red-500">*</span></label>
-                        <input type="tel" id="admin-phone" name="contact" placeholder="Enter Number"
+                        <input type="tel" id="admin-contact" name="adminContact" placeholder="Enter Number"
                             class="w-full px-4 py-2 mt-1 rounded-md border focus:outline-none focus:ring-2 focus:ring-cyan-500 change-input"
                             required>
                     </div>
@@ -207,7 +212,7 @@
                     <div class="w-full sm:w-[58%] mt-4 sm:mt-0">
                         <label for="admin-email" class="text-lg change-text">Admin Email <span
                                 class="text-red-500">*</span></label>
-                        <input type="email" id="admin-email" name="email" placeholder="Enter Email"
+                        <input type="email" id="admin-email" name="adminEmail" placeholder="Enter Email"
                             class="w-full px-4 py-2 mt-1 rounded-md border focus:outline-none focus:ring-2 focus:ring-cyan-500 change-input"
                             required>
                     </div>
@@ -244,7 +249,7 @@
                         <div class="w-full sm:w-[48%] mt-4 sm:mt-0">
                             <label for="confirm-password" class="text-lg change-text">Confirm Password <span
                                     class="text-red-500">*</span></label>
-                            <input type="password" id="confirm-password" name="password" placeholder="Confirm Password"
+                            <input type="password" id="confirm-password" name="confirmPassword" placeholder="Confirm Password"
                                 class="w-full px-4 py-2 mt-1 rounded-md border focus:outline-none focus:ring-2 focus:ring-cyan-500 change-input"
                                 required>
                         </div>
