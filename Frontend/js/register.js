@@ -8,6 +8,7 @@ const verifyOtp = document.getElementById("verify-otp");
 const resendOtp = document.getElementById("resend-otp");
 const resendOtpTimer = document.getElementById("resend-timer");
 const otpVerified = document.getElementById("otp-verified");
+let enterEmail = false;
 
 function splitFormData(formData) {
     const storeFields = ['GSTIN', 'storeName', 'storeAddress', 'storeContact', 'storeEmail', 'logo', 'currency'];
@@ -59,7 +60,7 @@ registerBtn.addEventListener("click", (e) => {
     const storePhoneInput = document.getElementById("store-contact").value;
     const adminPhoneInput = document.getElementById("admin-contact").value;
     const phoneRegex = /^[0-9]{10}$/;
-    if ((storePhoneInput || !phoneRegex.test(storePhoneInput)) || (!adminPhoneInput || !phoneRegex.test(adminPhoneInput))) {
+    if ((storePhoneInput || !phoneRegex.test(storePhoneInput)) && (!adminPhoneInput || !phoneRegex.test(adminPhoneInput))) {
         alert('Please enter a valid phone number.');
         return;
     }
@@ -97,8 +98,10 @@ getOtp.addEventListener('click', async (e) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailInput || !emailRegex.test(emailInput)) {
         alert('Please enter a valid email address.');
+        enterEmail = false;
         return;
     }
+    enterEmail = true;
     getOtp.classList.add("hidden");
     resendOtp.classList.remove("hidden");
     resendOtp.classList.add("flex");
@@ -121,7 +124,7 @@ getOtp.addEventListener('click', async (e) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ email }),
+            body: JSON.stringify({ email: emailInput }),
         });
         if (!response.ok) {
             throw new Error('Failed to fetch OTP. Please try again.');
@@ -140,35 +143,39 @@ getOtp.addEventListener('click', async (e) => {
 
 verifyOtp.addEventListener('click', async (e) => {
     e.preventDefault();
-    const emailInput = document.getElementById("admin-email").value;
-    const otpValue = otpInput.value.trim();
-    if (!otpValue) {
-        alert("Please enter the OTP.");
-        return;
-    }
-    try {
-        const response = await fetch("http://localhost:3000/register/verifyOtp", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email: emailInput, otp: otpValue }),
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            alert(`OTP Verification Successful: ${data.message}`);
-            otpVerified.classList.remove("hidden");
-            otpInput.required = false;
-            otpInput.readonly = true;
-            email.required = false;
-            otpInput.readonly = true;
-        } else {
-            const errorData = await response.json();
-            alert(`OTP Verification Failed: ${errorData.message}`);
+    if (!enterEmail) {
+        alert("Please enter a valid email address and click on Get OTP.");
+    } else {
+        const emailInput = document.getElementById("admin-email").value;
+        const otpValue = otpInput.value.trim();
+        if (!otpValue) {
+            alert("Please enter the OTP.");
+            return;
         }
-    } catch (error) {
-        console.error("Error verifying OTP:", error);
-        alert("An error occurred while verifying OTP. Please try again.");
+        try {
+            const response = await fetch("http://localhost:3000/register/verifyOtp", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email: emailInput, otp: otpValue }),
+            });
+            if (response.ok) {
+                const data = await response.json();
+                if (data.status === "success") {
+                    alert(`${data.message}`);
+                    otpVerified.classList.remove("hidden");
+                } else {
+                    alert("Enter correct OTP");
+                    otpVerified.classList.add("hidden");
+                }
+            } else {
+                const errorData = await response.json();
+                alert(`OTP Verification Failed: ${errorData.message}`);
+            }
+        } catch (error) {
+            console.error("Error verifying OTP:", error);
+            alert("An error occurred while verifying OTP. Please try again.");
+        }
     }
 });
